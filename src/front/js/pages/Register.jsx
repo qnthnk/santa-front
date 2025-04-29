@@ -319,15 +319,15 @@ const Register = () => {
             {step === 1 && (
               <div>
                 <h3 className='heading'>Paso 1: Datos Generales</h3>
-                <input className={`inputs ${errors.first_name ? 'input-error' : ''}`} type="text" name="first_name" placeholder='Nombre(s)' value={formData.first_name} onChange={handleChange} />
+                <input className={`inputContacts ${errors.first_name ? 'input-error' : ''}`} type="text" name="first_name" placeholder='Nombre(s)' value={formData.first_name} onChange={handleChange} />
                 {errors.first_name && <p className="error-text">{errors.first_name}</p>}
-                <input className={`inputs ${errors.first_last_name ? 'input-error' : ''}`} type="text" name="first_last_name" placeholder='Apellido Paterno' value={formData.first_last_name} onChange={handleChange} />
+                <input className={`inputContacts ${errors.first_last_name ? 'input-error' : ''}`} type="text" name="first_last_name" placeholder='Apellido Paterno' value={formData.first_last_name} onChange={handleChange} />
                 {errors.first_last_name && <p className="error-text">{errors.first_last_name}</p>}
-                <input className={`inputs ${errors.second_last_name ? 'input-error' : ''}`} type="text" name="second_last_name" placeholder='Apellido Materno' value={formData.second_last_name} onChange={handleChange} />
+                <input className={`inputContacts ${errors.second_last_name ? 'input-error' : ''}`} type="text" name="second_last_name" placeholder='Apellido Materno' value={formData.second_last_name} onChange={handleChange} />
                 {errors.second_last_name && <p className="error-text">{errors.second_last_name}</p>}
-                <input className={`inputs ${errors.curp ? 'input-error' : ''}`} type="text" name="curp" placeholder='CURP (18 caracteres)' value={formData.curp} onChange={handleCURPChange} maxLength="18" style={{ textTransform: 'uppercase' }} />
+                <input className={`inputContacts ${errors.curp ? 'input-error' : ''}`} type="text" name="curp" placeholder='CURP (18 caracteres)' value={formData.curp} onChange={handleCURPChange} maxLength="18" style={{ textTransform: 'uppercase' }} />
                 {errors.curp && <p className="error-text">{errors.curp}</p>}
-                <button className='login-buttont' type="button" onClick={handleNext}>Siguiente</button>
+                <button className='buttonPearl'style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleNext}>Siguiente</button>
               </div>
             )}
 
@@ -335,7 +335,7 @@ const Register = () => {
               <div>
                 <h3 className='heading'>Paso 2: Dirección</h3>
                 <input
-                  className={`inputs ${errors.zip_code ? 'input-error' : ''}`}
+                  className={`inputContacts ${errors.zip_code ? 'input-error' : ''}`}
                   type="text"
                   inputMode='numeric'
                   name="zip_code"
@@ -357,7 +357,7 @@ const Register = () => {
                     <label htmlFor="colonia_mex" className="form-label">Colonia:</label>
                     <select
                       id="colonia_mex"
-                      className={`inputs ${errors.colonia_mex ? 'input-error' : ''}`}
+                      className={`inputContacts ${errors.colonia_mex ? 'input-error' : ''}`}
                       name="colonia_mex"
                       value={formData.colonia_mex}
                       onChange={handleChange}
@@ -374,53 +374,54 @@ const Register = () => {
                 )}
 
                 <input
-                  className={`inputs ${errors.street ? 'input-error' : ''}`}
+                  className={`inputContacts ${errors.street ? 'input-error' : ''}`}
                   type="text"
                   name="street"
+                  style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}}
                   placeholder='Calle y Número Ext./Int.'
                   value={formData.street}
                   onChange={handleChange}
                 />
                 {errors.street && <p className="error-text">{errors.street}</p>}
 
-                <button className='login-buttont' type="button" onClick={handleBack}>Atrás</button>
-                <button className='login-buttont' type="button" onClick={handleNext}>Siguiente</button>
+                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleBack}>Atrás</button>
+                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleNext}>Siguiente</button>
               </div>
             )}
 
             {step === 3 && (
               <div>
                 <h3 className='heading'>Paso 3: Datos de Contacto</h3>
-                <input className={`inputs ${errors.email ? 'input-error' : ''}`} type="email" name="email" placeholder='Email' value={formData.email} onChange={handleChange} />
+                <input className={`inputContacts ${errors.email ? 'input-error' : ''}`} type="email" name="email" placeholder='Email' value={formData.email} onChange={handleChange} />
                 {errors.email && <p className="error-text">{errors.email}</p>}
-                <input className={`inputs ${errors.phone_number ? 'input-error' : ''}`} type="tel" inputMode='tel' name="phone_number" placeholder='Teléfono (10 dígitos)' value={formData.phone_number} onChange={handleChange} maxLength="10" />
+                <input className={`inputContacts ${errors.phone_number ? 'input-error' : ''}`} type="tel" inputMode='tel' name="phone_number" placeholder='Teléfono (10 dígitos)' value={formData.phone_number} onChange={handleChange} maxLength="10" />
                 {errors.phone_number && <p className="error-text">{errors.phone_number}</p>}
-                <input className='inputs' type="text" name="facebook" placeholder='Usuario Facebook (opcional)' value={formData.facebook} onChange={handleChange} />
-                <input className='inputs' type="text" name="instagram" placeholder='Usuario Instagram (opcional)' value={formData.instagram} onChange={handleChange} />
-                <input className='inputs' type="text" name="x" placeholder='Usuario X / Twitter (opcional)' value={formData.x} onChange={handleChange} />
-                <button className='login-buttont' type="button" onClick={handleBack}>Atrás</button>
-                <button className='login-buttont' type="button" onClick={handleNext}>Siguiente</button>
+                <input className='inputContacts' type="text" name="facebook" placeholder='Usuario Facebook (opcional)' value={formData.facebook} onChange={handleChange} />
+                <input className='inputContacts' type="text" name="instagram" placeholder='Usuario Instagram (opcional)' value={formData.instagram} onChange={handleChange} />
+                <input className='inputContacts' type="text" name="x" placeholder='Usuario X / Twitter (opcional)' value={formData.x} onChange={handleChange} />
+                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleBack}>Atrás</button>
+                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleNext}>Siguiente</button>
               </div>
             )}
 
             {step === 4 && (
               <div>
                 <h3 className='heading'>Paso 4: Datos Clínicos (Opcional)</h3>
-                <input className={`inputs ${errors.blood_type ? 'input-error' : ''}`} type="text" name="blood_type" placeholder='Tipo de sangre (Ej: O+, AB-)' value={formData.blood_type} onChange={handleChange} />
+                <input className={`inputContacts ${errors.blood_type ? 'input-error' : ''}`} type="text" name="blood_type" placeholder='Tipo de sangre (Ej: O+, AB-)' value={formData.blood_type} onChange={handleChange} />
                 {errors.blood_type && <p className="error-text">{errors.blood_type}</p>}
-                <input className={`inputs ${errors.allergy ? 'input-error' : ''}`} type="text" name="allergy" placeholder='Alergias (o "Ninguna")' value={formData.allergy} onChange={handleChange} />
+                <input className={`inputContacts ${errors.allergy ? 'input-error' : ''}`} type="text" name="allergy" placeholder='Alergias (o "Ninguna")' value={formData.allergy} onChange={handleChange} />
                 {errors.allergy && <p className="error-text">{errors.allergy}</p>}
-                <input className={`inputs ${errors.disease ? 'input-error' : ''}`} type="text" name="disease" placeholder='Enfermedades Crónicas (o "Ninguna")' value={formData.disease} onChange={handleChange} />
+                <input className={`inputContacts ${errors.disease ? 'input-error' : ''}`} type="text" name="disease" placeholder='Enfermedades Crónicas (o "Ninguna")' value={formData.disease} onChange={handleChange} />
                 {errors.disease && <p className="error-text">{errors.disease}</p>}
-                <button className='login-buttont' type="button" onClick={handleBack}>Atrás</button>
-                <button className='login-buttont' type="button" onClick={handleNext}>Siguiente</button>
+                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleBack}>Atrás</button>
+                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleNext}>Siguiente</button>
               </div>
             )}
 
             {step === 5 && (
               <div>
                 <h3 className='heading'>Paso 5: Finalizar Registro</h3>
-                <input className={`inputs ${errors.password ? 'input-error' : ''}`} type="password" name="password" placeholder='Crear contraseña (mín. 8 caracteres)' value={formData.password} onChange={handleChange} />
+                <input className={`inputContacts ${errors.password ? 'input-error' : ''}`} type="password" name="password" placeholder='Crear contraseña (mín. 8 caracteres)' value={formData.password} onChange={handleChange} />
                 {errors.password && <p className="error-text">{errors.password}</p>}
 
                 <div className="recaptcha-container">
@@ -432,10 +433,11 @@ const Register = () => {
                   {errors.recaptcha && <p className="error-text">{errors.recaptcha}</p>}
                 </div>
 
-                <button className='login-buttont' type="button" onClick={handleBack}>Atrás</button>
+                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleBack}>Atrás</button>
                 <button
                   type="button"
-                  className="login-buttont"
+                  className="buttonPearl"
+                  style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}}
                   onClick={handleSubmit}
                   disabled={isSubmitting}
                 >

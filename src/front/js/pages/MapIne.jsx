@@ -214,7 +214,7 @@ const handleConfirmDownload = () => {
                         <select
                             value={ambito}
                             onChange={handleAmbitoChange}
-                            className="inputContact"
+                            className="inputContacts"
                         >
                             <option value="">Seleccionar Ámbito</option>
                             <option value="fed">Federal</option>
@@ -228,9 +228,13 @@ const handleConfirmDownload = () => {
                         <select
                             value={selectedEntidad}
                             onChange={handleEntidadChange}
-                            className="inputContact"                        >
+                            className="inputContacts"                        >
                             <option value="">Seleccionar Entidad</option>
-                            <option value="NUEVO LEON">Nuevo León</option>
+                            {entidades.map((entidad) => (
+                                <option key={entidad} value={entidad}>
+                                    {entidad}
+                                </option>
+                            ))}
                         </select>
                     </div>
                     <br />
@@ -240,7 +244,8 @@ const handleConfirmDownload = () => {
                         <select
                             value={selectedDistrito}
                             onChange={handleDistritoChange}
-                            className="inputContact"                            disabled={!selectedEntidad}
+                            className="inputContacts"                            
+                            disabled={!selectedEntidad}
                         >
                             <option value="">Seleccionar Distrito</option>
                             {distritos.map((distrito) => (
@@ -257,7 +262,7 @@ const handleConfirmDownload = () => {
                         <select
                             value={selectedSeccion}
                             onChange={handleSeccionChange}
-                            className="inputContact"                            disabled={!selectedDistrito}
+                            className="inputContacts"                            disabled={!selectedDistrito}
                         >
                             <option value="">Seleccionar Sección</option>
                             {secciones.map((seccion) => (

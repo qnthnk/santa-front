@@ -10,6 +10,10 @@ const EmergencyButton = () => {
     const [countdown, setCountdown] = useState(5);
     const [geolocationError, setGeolocationError] = useState(null);
     const [isDeviceConnected, setIsDeviceConnected] = useState(false);
+    const [skipDeviceConfig, setSkipDeviceConfig] = useState(false);
+    const [hasChosenDeviceOption, setHasChosenDeviceOption] = useState(false);
+
+
 
     const connectPreferredDevice = async () => {
         const preferredDeviceId = localStorage.getItem('preferredDeviceId');
@@ -93,14 +97,15 @@ const EmergencyButton = () => {
     };
 
     const requestDevice = async () => {
+        setLoading(true); // 👈 Mostrar spinner al iniciar
         try {
             const device = await navigator.bluetooth.requestDevice({
                 acceptAllDevices: true,
                 optionalServices: ['battery_service']
             });
-
+    
             localStorage.setItem('preferredDeviceId', device.id);
-
+    
             device.addEventListener('gattserverdisconnected', () => {
                 console.log('¡Dispositivo desconectado!');
                 setIsDeviceConnected(false);
@@ -114,19 +119,19 @@ const EmergencyButton = () => {
                 });
                 handleEmergencia();
             });
-
+    
             const server = await device.gatt.connect();
             const service = await server.getPrimaryService('battery_service');
             const characteristic = await service.getCharacteristic('battery_level');
-
+    
             await characteristic.startNotifications();
             characteristic.addEventListener('characteristicvaluechanged', (event) => {
                 const value = event.target.value.getUint8(0);
                 console.log('Nivel de batería actualizado:', value);
             });
-
+    
             setIsDeviceConnected(true);
-
+    
             await Swal.fire({
                 title: '¡Dispositivo sincronizado!',
                 html: `
@@ -148,8 +153,11 @@ const EmergencyButton = () => {
                 confirmButtonText: 'Aceptar',
                 confirmButtonColor: '#d33'
             });
+        } finally {
+            setLoading(false); // 👈 Ocultar spinner al finalizar
         }
     };
+    
 
     const handleEmergencia = async () => {
         setLoading(true);
@@ -219,6 +227,14 @@ const EmergencyButton = () => {
             confirmButtonText: 'Aceptar'
         });
     };
+    useEffect(() => {
+        const skipped = localStorage.getItem('deviceConfigSkipped') === 'true';
+        if (skipped) {
+            setSkipDeviceConfig(true);
+        }
+        connectPreferredDevice();
+    }, []);
+    
 
     useEffect(() => {
         let timer;
@@ -233,50 +249,79 @@ const EmergencyButton = () => {
 
     return (
         <>
-            {!isDeviceConnected ? (
-                <button onClick={requestDevice} className="buttonPearlWT" style={{backgroundColor: 'success'}}>
-                    Buscar dispositivo BLE
-                </button>
-            ) : (
-                <button
-                    onClick={() => {
-                        Swal.fire({
-                            title: "¿Estás en emergencia?",
-                            html: `
-                                <div style="text-align: left;">
-                                    <p>Al confirmar, se enviará una alerta a:</p>
-                                    <ul>
-                                        <li>Todos tus contactos de emergencia</li>
-                                        <li>Con tu ubicación exacta en tiempo real</li>
-                                        <li>Tus datos médicos importantes</li>
-                                    </ul>
-                                    <p style="color: #d33; font-weight: bold; margin-top: 15px;">
-                                        Esta acción no puede deshacerse.
-                                    </p>
-                                </div>
-                            `,
-                            icon: "warning",
-                            showCancelButton: true,
-                            confirmButtonColor: "#d33",
-                            cancelButtonColor: "#6c757d",
-                            confirmButtonText: "Sí, necesito ayuda",
-                            cancelButtonText: "Cancelar",
-                            focusCancel: true
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                setShowCountdown(true);
-                                setCountdown(5);
-                            }
-                        });
-                    }}
-                    className={`buttonPearlW ${loading ? 'disabled' : ''}`}
-                    disabled={loading}
-                >
-                    <i className="fas fa-exclamation-triangle me-2"></i>
-                    {loading ? 'Enviando...' : 'Botón de Emergencia'}
-                    <i className="fas fa-exclamation-triangle me-2"></i>
-                </button>
-            )}
+       {!hasChosenDeviceOption && (
+    <button
+        onClick={() => {
+            Swal.fire({
+                title: "¿Tienes un dispositivo para vincular?",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#28a745",
+                cancelButtonColor: "#6c757d",
+                confirmButtonText: "Sí, vincular dispositivo",
+                cancelButtonText: "No, continuar sin vincular",
+                focusCancel: true
+            }).then((result) => {
+                setHasChosenDeviceOption(true);
+                localStorage.setItem('deviceConfigSkipped', result.isConfirmed ? 'false' : 'true'); // Oculta el botón
+                if (result.isConfirmed) {
+                    requestDevice();
+                } else {
+                    setSkipDeviceConfig(true);
+                }
+            });
+        }}
+        className="buttonPearlWT"
+        style={{ backgroundColor: 'info' }}
+    >
+        Configurar dispositivo
+    </button>
+)}
+
+
+{isDeviceConnected || skipDeviceConfig ? (
+    <button
+        onClick={() => {
+            Swal.fire({
+                title: "¿Estás en emergencia?",
+                html: `
+                    <div style="text-align: left;">
+                        <p>Al confirmar, se enviará una alerta a:</p>
+                        <ul>
+                            <li>Todos tus contactos de emergencia</li>
+                            <li>Con tu ubicación exacta en tiempo real</li>
+                            <li>Tus datos médicos importantes</li>
+                        </ul>
+                        <p style="color: #d33; font-weight: bold; margin-top: 15px;">
+                            Esta acción no puede deshacerse.
+                        </p>
+                    </div>
+                `,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#6c757d",
+                confirmButtonText: "Sí, necesito ayuda",
+                cancelButtonText: "Cancelar",
+                focusCancel: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setShowCountdown(true);
+                    setCountdown(5);
+                }
+            });
+        }}
+        className={`buttonPearlW ${loading ? 'disabled' : ''}`}
+        disabled={loading}
+    >
+        <i className="fas fa-exclamation-triangle me-2"></i>
+        {loading ? 'Enviando...' : 'Botón de Emergencia'}
+        <i className="fas fa-exclamation-triangle me-2"></i>
+    </button>
+) : (
+   <></>
+)}
+
 
             {showCountdown && (
                 <div className="modal-overlay">
