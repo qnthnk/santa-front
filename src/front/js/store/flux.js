@@ -397,37 +397,16 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
             },
 
-            sendEmergencyCoordinates: async () => {
+            sendEmergencyCoordinates: async (latitude, longitude, user_id) => {
                 try {
-                    // 1. Obtener el ID del usuario desde localStorage
-                    const user_id = localStorage.getItem('id');
-                    if (!user_id) {
-                        throw new Error('No se pudo identificar al usuario');
-                    }
-
-                    // 2. Obtener la ubicación usando la API de geolocalización
-                    const position = await new Promise((resolve, reject) => {
-                        if (!navigator.geolocation) {
-                            reject(new Error('Geolocalización no soportada por el navegador'));
-                        } else {
-                            navigator.geolocation.getCurrentPosition(resolve, reject, {
-                                enableHighAccuracy: true,
-                                timeout: 10000,  // 10 segundos de espera
-                                maximumAge: 0      // No usar caché
-                            });
-                        }
-                    });
-
-                    // 3. Preparar datos para enviar al backend
                     const coordinates = {
-                        latitude: position.coords.latitude.toString(),
-                        longitude: position.coords.longitude.toString(),
-                        id: user_id
+                        latitude: latitude,
+                        longitude: longitude,
+                        id: user_id  // 👈 OJO: ahora es "id", no "user_id"
                     };
-
-                    // 4. Enviar al backend
+            
                     const token = localStorage.getItem("token");
-                    const response = await fetch(process.env.BACKEND_URL + "api/emergency-alert", {
+                    const response = await fetch(process.env.BACKEND_URL + "api/emergency", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -435,25 +414,22 @@ const getState = ({ getStore, getActions, setStore }) => {
                         },
                         body: JSON.stringify(coordinates),
                     });
-
-                    // 5. Manejar respuesta
+            
                     if (!response.ok) {
                         const errorData = await response.json();
-                        throw new Error(errorData.message || 'Error al enviar alerta');
+                        throw new Error(errorData.error || 'Error al enviar alerta');
                     }
-
+            
                     const data = await response.json();
-                    console.log("Respuesta del servidor:", response);
+                    console.log("Respuesta del servidor:", data);
                     return {
                         success: true,
-                        contacts_notified: data.contacts_notified,
                         location: coordinates
                     };
-
+            
                 } catch (error) {
-                    console.error("Error en sendEmergencyCoordinates:");
-
-                    // Mensajes amigables para el usuario
+                    console.error("Error en sendEmergencyCoordinates:", error);
+            
                     let userMessage = "Error al enviar alerta";
                     if (error.message.includes("Geolocalización no soportada")) {
                         userMessage = "Tu navegador no soporta geolocalización";
@@ -462,11 +438,11 @@ const getState = ({ getStore, getActions, setStore }) => {
                     } else if (error.message.includes("denied")) {
                         userMessage = "Permiso de ubicación denegado";
                     }
-
+            
                     throw new Error(userMessage);
                 }
             },
-
+            
 
             addContact: async (payload, user_id) => {
                 let store = getStore();

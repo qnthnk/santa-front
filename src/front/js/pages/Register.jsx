@@ -310,11 +310,12 @@ const Register = () => {
   }, []);
 
   return (
-    <div className='containerRMC'>
-      <div className='containerH'>
+    
+    <div className='containerRMCs'>
+      <div className='containerHs'>
         <h3 className='heading'>Completa el siguiente formulario para inscribirte</h3>
-        <div className="container">
-          <form className='forms' onSubmit={(e) => e.preventDefault()} noValidate>
+        <div className="heroContact">
+          <form className='formContact' onSubmit={(e) => e.preventDefault()} noValidate>
             {step === 1 && (
               <div>
                 <h3 className='heading'>Paso 1: Datos Generales</h3>

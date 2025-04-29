@@ -165,7 +165,7 @@ const EmergencyButton = () => {
                 throw new Error('No se pudo identificar al usuario');
             }
 
-            const result = await actions.sendTwilioAlert(latitude, longitude);
+            const result = await actions.sendEmergencyCoordinates(latitude, longitude, user_id);
             showSuccessAlert(latitude, longitude, result.contacts_notified);
         } catch (error) {
             handleEmergencyError(error);
