@@ -53,64 +53,64 @@ const HomeAdmin = () => {
           <div className='formis'>
 
             {token && (
-                <button className='buttonPearlAdmin'>
+              <button className='buttonPearlAdmin'>
                 <Link className='wrap' to='/admin-console'>
                   <p>
-                  <span><MdOutlineDashboardCustomize style={{ fontSize: '3em' }} /></span>
-                  <span>Consola</span>
+                    <span><MdOutlineDashboardCustomize style={{ fontSize: '3em' }} /></span>
+                    <span>Consola</span>
                   </p>
                 </Link>
-                </button>
-            )}
-            {token && (
-              <button className='buttonPearlAdmin'>
-              <Link className='wrap' to='/dashboard-edition'>
-                <p>
-                <span><LiaMapSolid  style={{ fontSize: '3em' }} /></span>
-                <span> Mapas</span>
-                </p>
-              </Link>
               </button>
             )}
             {token && (
               <button className='buttonPearlAdmin'>
-              <Link className='wrap' to='/stats-and-reports'>
-                <p>
-                <span><FaChartPie style={{ fontSize: '3em' }} /></span>
-                <span> Estadística</span>
-                </p>
-              </Link>
+                <Link className='wrap' to='/mapine'>
+                  <p>
+                    <span><LiaMapSolid style={{ fontSize: '3em' }} /></span>
+                    <span> Mapas</span>
+                  </p>
+                </Link>
+              </button>
+            )}
+            {token && (
+              <button className='buttonPearlAdmin'>
+                <Link className='wrap' to='/stats-and-reports'>
+                  <p>
+                    <span><FaChartPie style={{ fontSize: '3em' }} /></span>
+                    <span> Estadística</span>
+                  </p>
+                </Link>
               </button>
             )}
 
             {token && (
               <button className='buttonPearlAdmin'>
-              <Link className='wrap' to='/chatbot'>
-                <p>
-                <span><TbMessageChatbotFilled   style={{ fontSize: '3em' }} /></span>
-                <span> Chatbot</span>
-                </p>
-              </Link>
+                <Link className='wrap' to='/chatbot'>
+                  <p>
+                    <span><TbMessageChatbotFilled style={{ fontSize: '3em' }} /></span>
+                    <span> Chatbot</span>
+                  </p>
+                </Link>
               </button>
             )}
             {token && (
               <button className='buttonPearlAdmin'>
-              <Link className='wrap' to='//blog'>
-                <p>
-                <span><FaAddressCard   style={{ fontSize: '3em' }} /></span>
-                <span> Expediente</span>
-                </p>
-              </Link>
+                <Link className='wrap' to='/expediente'>
+                  <p>
+                    <span><FaAddressCard style={{ fontSize: '3em' }} /></span>
+                    <span> Expediente</span>
+                  </p>
+                </Link>
               </button>
             )}
             {token && (
               <button className='buttonPearlAdmin'>
-              <Link className='wrap' to='/blog'>
-                <p>
-                <span><TbReportSearch  style={{ fontSize: '3em' }} /></span>
-                <span>Reportes</span>
-                </p>
-              </Link>
+                <Link className='wrap' to='/blog'>
+                  <p>
+                    <span><TbReportSearch style={{ fontSize: '3em' }} /></span>
+                    <span>Reportes</span>
+                  </p>
+                </Link>
               </button>
             )}
           </div>

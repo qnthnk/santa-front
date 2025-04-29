@@ -48,12 +48,12 @@ const ViewContact = () => {
             confirmButtonText: "Sí, eliminar",
             cancelButtonText: "Cancelar",
         });
-    
+
         if (result.isConfirmed) {
             try {
                 await actions.deleteContact(id);
                 setDetector((prev) => !prev);
-    
+
                 // Mensaje de éxito
                 Swal.fire({
                     title: "¡Eliminado!",
@@ -63,7 +63,7 @@ const ViewContact = () => {
                 });
             } catch (error) {
                 console.error(error);
-    
+
                 // Mensaje de error
                 Swal.fire({
                     title: "Error",
@@ -81,24 +81,24 @@ const ViewContact = () => {
 
     return (
         <div >
-            <div className="heroContact" style={{backgroundColor: "rgb(255, 255, 255)", backdropFilter: "blur(15px)"}}>
+            <div className="heroContact" style={{ backgroundColor: "rgb(255, 255, 255)", backdropFilter: "blur(15px)" }}>
                 <form className='formContact'>
                     {Array.isArray(store.contact) && store.contact.length > 0 ? (
                         store.contact.map((item, index) => (
                             <div style={{ textAlign: 'left', marginBottom: '10px' }} key={index}>
                                 <div>
-                                    <p><IoMdContact style={{ fontSize: '2.5em', color: 'rgb(134, 37, 68)' }} />{item.full_name}</p>
+                                    <p><IoMdContact style={{ fontSize: '2.5em', color: 'rgb(133,66,166)' }} />{item.full_name}</p>
                                     <p>
-                                        <BsFillTelephoneFill style={{ fontSize: '2em', color: 'rgb(134, 37, 68)' }} /> {item.phone_number}
+                                        <BsFillTelephoneFill style={{ fontSize: '2em', color: 'rgb(133,66,166)' }} /> {item.phone_number}
                                     </p>
                                     <p>
-                                        <AiTwotoneMail style={{ fontSize: '2em', color: 'rgb(134, 37, 68)' }} /> {item.email}
+                                        <AiTwotoneMail style={{ fontSize: '2em', color: 'rgb(133,66,166)' }} /> {item.email}
                                     </p>
                                 </div>
                                 <div className="cointainer-fluid row">
                                     <button
                                         type="button"
-                                        className="buttonPearl" style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}}
+                                        className="buttonPearl" style={{ width: "120px", height: "50px", borderRadius: "20px", color: 'white' }}
                                         data-bs-toggle="modal"
                                         data-bs-target={`#exampleModal${index}`}
                                     >
@@ -178,7 +178,7 @@ const ViewContact = () => {
                                                 </div>
                                                 <div className="modal-footer">
                                                     <button
-                                                        className="buttonPearl" style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}}
+                                                        className="buttonPearl" style={{ width: "120px", height: "50px", borderRadius: "20px", color: 'white' }}
                                                         onClick={(event) => handleEdit(event, payload, item.id)}
                                                     >
                                                         Guardar cambios
@@ -188,7 +188,7 @@ const ViewContact = () => {
                                         </div>
                                     </div>
                                     <button
-                                        className="buttonPearlAdmin" style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}}
+                                        className="buttonPearlAdmin" style={{ width: "120px", height: "50px", borderRadius: "20px", color: 'white' }}
                                         onClick={(event) => handleDelete(item.id, event)}
                                     >
                                         Eliminar
@@ -198,11 +198,11 @@ const ViewContact = () => {
                             </div>
                         ))
                     ) : (
-                        <p className="heading" style={{ fontSize: "110%" }}>No tienes contactos. Por favor, regístralos.<br /><FaArrowDown style={{ fontSize: "3em" }} /></p>
+                        <p className="heading" style={{ fontSize: "110%" }}>No tienes contactos. Por favor, regístralos.</p>
                     )}
-                    </form>
-                </div>
+                </form>
             </div>
+        </div>
     );
 };
 

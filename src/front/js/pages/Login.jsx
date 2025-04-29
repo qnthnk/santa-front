@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Context } from '../store/appContext';
 import { useNavigate, Link } from 'react-router-dom';
 import './../../styles/Login.css';
-import LOGO from '../../img/garciaback.png'
+import LOGO from '../../img/ONMPRI.png'
 import { FaInfo } from "react-icons/fa";
 
 
@@ -35,7 +35,7 @@ const Login = () => {
       const response = await actions.login({ email, password });
 
       if (response?.token) {
-      //   if (setToken) setToken(response.token);
+        //   if (setToken) setToken(response.token);
 
         // Redirigir basado en el rol del usuario
         const redirectPath = store.user.role === 'admin' ? '/admin-dashboard' : '/home';
@@ -57,82 +57,58 @@ const Login = () => {
 
     <div className='containerRMC'>
       <div className='containerH'>
-        
 
-       
+
+
         <div className="main">
-        <div className="mainInner">
-          
+          <div className="mainInner">
 
-        <div className="login">
-          <div className="heading" style={{color:"white", marginTop:"20px"}}>Escudo</div>
-          <form className="form" onSubmit={handleSubmit}>
-            <input
-              placeholder="Correo electrónico"
-              id="email"
-              name="email"
-              type="email"
-              className="inputlog"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <input
-              placeholder="Contraseña"
-              id="password"
-              name="password"
-              type="password"
-              className="inputlog"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-            <div className="loginNew" style={{marginTop: "-20px"}}>
-              <button value="Iniciar sesión" type="submit" >Ingresar</button>
-            <span >
-              <Link className='forgot-password' to="/forgot-password">Olvidé mi contraseña</Link>
-            </span>
-            <span >
-              <Link className='forgot-password' style={{fontSize:'x-large'}} to="/signup">Regístrate</Link>
-            </span>
 
-            </div>
-            </form>
-            </div>
-            </div>
-          <div className="register">
-            <form className="form">
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <img src={LOGO} className='logo' />
-        </div>
-         
-            </form>
-            </div>
+            <div className="login">
+              <div className="heading" style={{ color: "white", marginTop: "20px" }}>Escudo</div>
+              <form className="form" onSubmit={handleSubmit}>
+                <input
+                  placeholder="Correo electrónico"
+                  id="email"
+                  name="email"
+                  type="email"
+                  className="inputlog"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <input
+                  placeholder="Contraseña"
+                  id="password"
+                  name="password"
+                  type="password"
+                  className="inputlog"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <div className="loginNew" style={{ marginTop: "-20px" }}>
+                  <button value="Iniciar sesión" type="submit" >Ingresar</button>
+                  <span >
+                    <Link className='forgot-password' to="/forgot-password">Olvidé mi contraseña</Link>
+                  </span>
+                  <span >
+                    <Link className='forgot-password' style={{ fontSize: 'x-large' }} to="/signup">Regístrate</Link>
+                  </span>
 
-            
-
-        
-        </div>
-        <br />
-        <button type="button" className="DemoButton firstClick" style={{ width: "200px", borderRadius: "20px" }} data-bs-toggle="modal" data-bs-target="#exampleModal">
-          Versión Demo CLICK
-        </button>
-        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div className="modal-content demoContainer">
-              <div className="modal-body">
-                <div className=''>Bienvenido al DEMO. En cada sección encontrarás un ícono de información, como el que se muestra a continuación. Puedes presionar sobre él para obtener referencias sobre cada función.
-                </div >
-                {/* Ajustar el tamaño del icono */}
-                <FaInfo className='DemoButton'  />
-              </div>
-              <div className="modal-content">
-                <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Cerrar</button>
-              </div>
+                </div>
+              </form>
             </div>
           </div>
+          <div className="register">
+            <form className="form">
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <img src={LOGO} className='logo' />
+              </div>
+
+            </form>
+          </div>
         </div>
-      
       </div>
     </div>
   );

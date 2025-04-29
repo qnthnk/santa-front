@@ -1,0 +1,227 @@
+{
+      "ruta": "1",
+      "ramales": [
+        {
+          "nombre": "Sector 1: San Nicolás - Central - TEC",
+          "tarifas": {
+            "Tarjeta Feria Ordinario": 11.19,
+            "Tarjeta Feria Preferencial": 7.39
+          }
+        },
+        {
+          "nombre": "Sector 1: San Nicolás - Directo - TEC",
+          "tarifas": {
+            "Tarjeta Feria Ordinario": 11.19,
+            "Tarjeta Feria Preferencial": 7.39
+          }
+        },
+        {
+          "nombre": "Sector 2: Alianza Real - Clínica 6",
+          "tarifas": {
+            "MIA/Me Muevo": 15.00,
+            "Urbani Ordinario": 15.00,
+            "Urbani Preferencial": 9.71,
+            "E-UANL": 9.51
+          }
+        },
+        {
+          "nombre": "Sector 3: Vistas del Carmen - San Nicolás",
+          "tarifas": {}
+        },
+        {
+          "nombre": "Palmiras - San Nicolás",
+          "tarifas": {}
+        },
+        {
+          "nombre": "Pilares - Central de Autobuses",
+          "tarifas": {}
+        },
+        {
+          "nombre": "Pilares - Andalucía - Universidad",
+          "tarifas": {}
+        },
+        {
+          "nombre": "El Carmen - Salinas Victoria - San Nicolás",
+          "tarifas": {}
+        },
+        {
+          "nombre": "Jaral",
+          "tarifas": {}
+        }
+      ]
+    },
+    {
+      "ruta": "2",
+      "ramales": [
+        {
+          "nombre": "Puerta de Hierro - Expo Guadalupe",
+          "tarifas": {}
+        }
+      ]
+    },
+    {
+      "ruta": "5",
+      "ramales": [
+        {
+          "nombre": "Estanzuela",
+          "tarifas": {
+            "Tarjeta Feria Ordinario": 11.19,
+            "Tarjeta Feria Preferencial": 7.39
+          }
+        },
+        {
+          "nombre": "Directo - Los Cristales",
+          "tarifas": {
+            "Tarjeta Feria Ordinario": 11.19,
+            "Tarjeta Feria Preferencial": 7.39
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "6",
+      "ramales": [
+        {
+          "nombre": "Santa Catarina - Estación Colonia Obrera",
+          "tarifas": {
+            "MIA/Me Muevo": 15.00,
+            "Urbani Ordinario": 15.00,
+            "Urbani Preferencial": 9.71,
+            "E-UANL": 9.51
+          }
+        },
+        {
+          "nombre": "Estación Colonia Obrera - Casa Blanca",
+          "tarifas": {
+            "MIA/Me Muevo": 15.00,
+            "Urbani Ordinario": 15.00,
+            "Urbani Preferencial": 9.71,
+            "E-UANL": 9.51
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "13",
+      "ramales": [
+        {
+          "nombre": "Barrio Oaxaca - Camino Real",
+          "tarifas": {
+            "Tarjeta Feria Ordinario": 11.19,
+            "Tarjeta Feria Preferencial": 7.39
+          }
+        },
+        {
+          "nombre": "Pedregal - Alianza Real",
+          "tarifas": {}
+        },
+        {
+          "nombre": "San Miguel - C4",
+          "tarifas": {}
+        },
+        {
+          "nombre": "Buena Vista - Solidaridad",
+          "tarifas": {}
+        },
+        {
+          "nombre": "Buena Vista - Estación San Bernabé",
+          "tarifas": {}
+        }
+      ]
+    },
+    {
+      "ruta": "17",
+      "ramales": [
+        {
+          "nombre": "Pio X - UANL",
+          "tarifas": {}
+        },
+        {
+          "nombre": "Santuario - UANL",
+          "tarifas": {}
+        }
+      ]
+    },
+    {
+      "ruta": "20",
+      "ramales": [
+        {
+          "nombre": "1: Juárez",
+          "tarifas": {}
+        },
+        {
+          "nombre": "2: Alameda",
+          "tarifas": {}
+        }
+      ]
+    },
+    {
+      "ruta": "23",
+      "ramales": [
+        {
+          "nombre": "Cumbres",
+          "tarifas": {
+            "Efectivo": 15.00,
+            "MIA/Me Muevo": 15.00,
+            "Urbani Ordinario": 15.00,
+            "Urbani Preferencial": 9.71,
+            "E-UANL": 9.51
+          }
+        },
+        {
+          "nombre": "Cedros",
+          "tarifas": {
+            "Efectivo": 15.00,
+            "MIA/Me Muevo": 15.00,
+            "Urbani Ordinario": 15.00,
+            "Urbani Preferencial": 9.71,
+            "E-UANL": 9.51
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "30",
+      "ramales": [
+        {
+          "nombre": "El Barro - Centro",
+          "tarifas": {
+            "Efectivo": 12.00,
+            "Tarjeta Feria Ordinario": 11.19,
+            "Tarjeta Feria Preferencial": 7.39
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "38",
+      "ramales": [
+        {
+          "nombre": "Valle de Lincoln",
+          "tarifas": {
+            "Efectivo": 15.00,
+            "MIA/Me Muevo": 15.00,
+            "Urbani Ordinario": 15.00,
+            "Urbani Preferencial": 9.71,
+            "E-UANL": 9.51
+          }
+        },
+        {
+          "nombre": "Paraje San José",
+          "tarifas": {
+            "Efectivo": 15.00,
+            "MIA/Me Muevo": 15.00,
+            "Urbani Ordinario": 15.00,
+            "Urbani Preferencial": 9.71,
+            "E-UANL": 9.51
+          }
+        }
+      ]
+    },
+    {
+      "ruta": "39",
+      "ramales": [
+        {
+          "nombre": "Normal",
+          "tarifas": {}
+        },

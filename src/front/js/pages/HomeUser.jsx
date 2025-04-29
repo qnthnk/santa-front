@@ -132,12 +132,12 @@ const HomeUser = () => {
             {token && (
                             <button className='buttonPearl'>
 
-              <Link className='wrap' to='/adopt'>
+              <Link className='wrap' to='/'>
               <p>
-                    <span>
+                    <span className='wrap'>
                 <PiPawPrintFill style={{ fontSize: '3em' }} />
                 </span>
-                    <span>Adopta</span>
+                    <span>Opciones</span>
                     
                   </p>
               </Link>

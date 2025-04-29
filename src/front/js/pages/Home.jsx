@@ -41,19 +41,20 @@ const Home = () => {
   return (
     <>
       {token ? (
-        <div className='containerRMC'>
+        <div
+          className='containerRMC'
+        >
           <div className='containerH'>
-            {/* MODAL DEMO */}
-            <button type="button" 
-            className="DemoButton " 
-            style={{ width: "50px", height: "50px", borderRadius: "50%"}} 
-            data-bs-toggle="modal" 
-            data-bs-target="#exampleModal">
-              <FaInfo className='DemoButton' />
-            </button>
            
-            <div className="d-flex justify-content-center mt-5">
-              <button className="checkbox-wrapper-8" style={{ marginTop: '20px', borderRadius: '20px', backgroundColor: 'rgba(255, 255, 255, 0.5)', backdropFilter: 'blur(15px)', width: '170px' }}>
+              <button className="checkbox-wrapper-8"
+               style={{ 
+                marginTop: '20px', 
+                borderRadius: '20px', 
+                backgroundColor: isAdmin ? 'rgba(163, 139, 43, 0.5)' : 'rgb(134, 37, 68, 0.5)',
+                transition: 'background-color 0.3s ease', 
+                backdropFilter: 'blur(15px)', width: '170px' }}>
+            
+
                 <input
                   type="checkbox"
                   id="cb3-8"
@@ -68,7 +69,6 @@ const Home = () => {
                   className="tgl-btn"
                 ></label>
               </button>
-            </div>
 
             <div className="checkbox-wrapper-8">
               {isAdmin ? <HomeAdmin /> : <HomeUser />}

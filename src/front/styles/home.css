@@ -1,29 +1,28 @@
 /* Estilos base (originales) */
 .containerRMC {
-	width: 100%;
-	height: 100%;
+	width: 100vw;
+	height: 60vh;
 	display: grid;
 	place-items: center;
 	/* Centers content both horizontally and vertically */
-    font-family: 'Roboto', sans-serif;
-    margin-top: 70px; /* Adjust the value as needed for the navbar */
-    margin-bottom: 20px; /* Adjust the value as needed for the footer */
-	
+	font-family: 'Roboto', sans-serif;
+	margin-top: 20vh;
+	/* Adjust the value as needed for the navbar */
+	margin-bottom: 10vh;
+	/* Adjust the value as needed for the footer */
+	overflow: hidden;
+
 }
 
+
 html,
-body {
-	
-	overscroll-behavior: contain;
-}
+body {}
 
 
 .containerRMC .containerH {
 	max-width: 100%;
-	max-height: 100vh;
-	padding: 5px 15px;
+	max-height: 100%;
 	margin: none;
-	overflow-y: auto;
 }
 
 .containerData {
@@ -145,7 +144,7 @@ body {
 	display: block;
 	width: 140px;
 	text-decoration: none;
-	background-color: rgb(134, 37, 68);
+	background-color: rgb(133, 66, 166);
 	color: white;
 	padding-block: 15px;
 	margin: 10px auto;
@@ -215,7 +214,7 @@ body {
 	height: auto;
 	word-wrap: break-word;
 	border-radius: 20px;
-	box-shadow: rgb(134, 37, 68) 0px 20px 10px -15px;
+	box-shadow: rgb(133, 66, 166) 0px 20px 10px -15px;
 	border: none;
 	transition: all 0.2s ease-in-out;
 	font-size: 16px;
@@ -296,15 +295,15 @@ body {
 	display: block;
 	width: 60px;
 	text-decoration: none;
-	background: rgb(243, 241, 241);
+	background: rgba(133, 66, 166, 0.705);
 	backdrop-filter: blur(10px);
-	color: #731436;
+	color: whitesmoke;
 	padding-block: 10px;
 	text-align: center;
 	height: 60px;
 	word-wrap: break-word;
 	border-radius: 50%;
-	border-color: #D9A577;
+	border-color: rgb(133, 66, 166);
 	border-width: 5px;
 	transition: all 0.2s ease-in-out;
 }
@@ -329,7 +328,7 @@ body {
 	height: 50px;
 	word-wrap: break-word;
 	border-radius: 20px;
-	box-shadow: rgb(134, 37, 68) 0px 20px 10px -15px;
+	box-shadow: rgb(133, 66, 166) 0px 20px 10px -15px;
 	border: none;
 	transition: all 0.2s ease-in-out;
 }
@@ -340,12 +339,12 @@ body {
 
 .login-buttonesN2:focus {
 	outline: none;
-	box-shadow: rgb(134, 37, 68) 0px 23px 10px -20px;
+	box-shadow: rgb(133, 66, 166) 0px 23px 10px -20px;
 }
 
 .login-buttonesN2:active {
 	transform: scale(2);
-	box-shadow: rgb(134, 37, 68) 0px 15px 10px -10px;
+	box-shadow: rgb(133, 66, 166) 0px 15px 10px -10px;
 }
 
 .login-buttonesEmergencia {
@@ -391,7 +390,7 @@ body {
 	height: 50px;
 	word-wrap: break-word;
 	border-radius: 20px;
-	box-shadow: rgb(134, 37, 68) 0px 20px 10px -15px;
+	box-shadow: rgb(133, 66, 166) 0px 20px 10px -15px;
 	border: none;
 	transition: all 0.2s ease-in-out;
 }
@@ -493,8 +492,8 @@ body {
 }
 
 .logoNav {
-	width: 180px;
-	height: 75px;
+	width: 120px;
+	height: 120px;
 
 }
 
@@ -874,7 +873,7 @@ body {
 /* From Uiverse.io by marcelodolza */
 .buttonPearl {
 	--white: #ffe7ff;
-	--bg: rgb(134, 37, 68);
+	--bg: rgb(133, 66, 166);
 	--radius: 100px;
 	outline: none;
 	cursor: pointer;
@@ -906,9 +905,10 @@ body {
 
 
 }
+
 .buttonPearl:hover {
 	--white: #f9ffe7;
-	--bg: rgb(134, 37, 68);
+	--bg: rgb(133, 66, 166);
 	cursor: pointer;
 	border: 0;
 	width: 120px;
@@ -920,18 +920,23 @@ body {
 	0% {
 		transform: rotate(0deg);
 	}
+
 	20% {
 		transform: rotate(15deg);
 	}
+
 	40% {
 		transform: rotate(5deg);
 	}
+
 	60% {
 		transform: rotate(-15deg);
 	}
+
 	80% {
 		transform: rotate(0deg);
 	}
+
 	100% {
 		transform: rotate(0deg);
 	}
@@ -944,14 +949,14 @@ body {
 	align-items: center;
 	width: 120px;
 	height: 120px;
-	font-size:x-large;
+	font-size: x-large;
 	text-align: center;
 	font-weight: 500;
 	transform: translateY(10%);
 	transition: transform 0.3s ease-in-out;
 	mask-image: linear-gradient(to bottom, white 10%, transparent),
 		linear-gradient(to top, white 10%, transparent);
-		
+
 }
 
 .buttonPearlAdmin {
@@ -988,6 +993,7 @@ body {
 
 
 }
+
 .buttonPearlAdmin:hover {
 	--white: #f9ffe7;
 	cursor: pointer;
@@ -1001,18 +1007,23 @@ body {
 	0% {
 		transform: rotate(0deg);
 	}
+
 	20% {
 		transform: rotate(15deg);
 	}
+
 	40% {
 		transform: rotate(5deg);
 	}
+
 	60% {
 		transform: rotate(-15deg);
 	}
+
 	80% {
 		transform: rotate(0deg);
 	}
+
 	100% {
 		transform: rotate(0deg);
 	}
@@ -1025,15 +1036,12 @@ body {
 	align-items: center;
 	width: 120px;
 	height: 120px;
-	font-size:x-large;
+	font-size: x-large;
 	text-align: center;
 	font-weight: 500;
 	transform: translateY(10%);
 	transition: transform 0.3s ease-in-out;
 	mask-image: linear-gradient(to bottom, white 10%, transparent),
 		linear-gradient(to top, white 10%, transparent);
-		
+
 }
-
-
-

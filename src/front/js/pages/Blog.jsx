@@ -5,17 +5,15 @@ const Blog = () => {
     <div className='containerRMC'>
       <div className='containerH'>
         <p className='heading'>Personalizado</p>
-        <div className='containerMap'>
+        <div className='containerMap' style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
           <h3 className='' style={{ textAlign: "center" }}>
-            Se pueden agregar las funciones que se requieran:
+            Reportes
           </h3>
-          <br />
-          <ul>
-            <li><h4>Información sobre pago de derechos.</h4></li>
-            <li><h4>Alta de reportes ciudadanos.</h4></li>
-            <li><h4>Captura de fotos y video.</h4></li>
-            <li><h4>Noticias relevantes sobre las acciones de Gobierno.</h4></li>
-          </ul>
+          <h4>Se puede descargar la información en formato excel o pdf.
+            <br />
+            <strong>Versión Demo.<br />No se encuentra habilitada la descarga.</strong>
+          </h4>
+           
         </div>
       </div>
     </div>

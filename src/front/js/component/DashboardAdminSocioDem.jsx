@@ -1,101 +1,290 @@
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
-import "../../styles/home.css";
-import Chart1_1 from '../component/Chart1_1.jsx';
-import Chart1_2 from '../component/Chart1_2.jsx';
-import Chart1_3 from '../component/Chart1_3.jsx';
-import Chart1_4 from '../component/Chart1_4.jsx';
-import Chart1_5 from '../component/Chart1_5.jsx';
-import Chart1_6 from '../component/Chart1_6.jsx';
-import Chart2_1 from '../component/Chart2_1.jsx';
-import Chart2_2 from '../component/Chart2_2.jsx';
-import Chart2_3 from '../component/Chart2_3.jsx';
-import Chart2_4 from '../component/Chart2_4.jsx';
-import Chart2_5 from '../component/Chart2_5.jsx';
-import Chart2_6 from '../component/Chart2_6.jsx';
-import Chart3_1 from '../component/Chart3_1.jsx';
-import Chart3_2 from '../component/Chart3_2.jsx';
-import Chart3_3 from '../component/Chart3_3.jsx';
-import Chart3_4 from '../component/Chart3_4.jsx';
-import Chart3_5 from '../component/Chart3_5.jsx';
-import Chart3_6 from '../component/Chart3_6.jsx';
+import "../../styles/ContactList.css";
+import { FaInfo } from "react-icons/fa";
+import { Bar } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+);
+
+const faqs = [
+    {
+        question: "Demografía",
+        charts: [
+            {
+                labels: ['0-11', '12-17', '18-25', '26-35', '36-50', '51-60', '60+'],
+                datasets: [
+                    {
+                        label: 'Edad (años)',
+                        data: [20, 32, 56, 45, 23, 12, 8],
+                        backgroundColor: 'rgba(169, 44, 71, 0.6)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            },
+            {
+                labels: ['Nuevo León', 'Estado de México', 'Tamaulipas', 'Coahuila', 'Veracruz'],
+                datasets: [
+                    {
+                        label: 'Entidad de Nacimiento',
+                        data: [50, 20, 15, 10, 5],
+                        backgroundColor: 'rgba(206, 33, 50, 0.69)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            },
+            {
+                labels: ['Hombres', 'Mujeres'],
+                datasets: [
+                    {
+                        label: 'Género',
+                        data: [48, 52],
+                        backgroundColor: 'rgba(180, 206, 33, 0.69)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        question: "Salud",
+        charts: [
+            {
+                labels: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'],
+                datasets: [
+                    {
+                        label: 'Tipo de Sangre',
+                        data: [20, 15, 25, 10, 5, 8, 12, 5],
+                        backgroundColor: 'rgba(236, 10, 10, 0.6)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            },
+            {
+                labels: ['polvo', 'pollen', 'alimentos', 'medicamentos', 'otros'],
+                datasets: [
+                    {
+                        label: 'Alergias',
+                        data: [10, 20, 15, 5, 10],
+                        backgroundColor: 'rgba(140, 206, 33, 0.69)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            },
+            {
+                labels: ['diabetes', 'hipertensión', 'cáncer', 'enfermedades cardíacas', 'enfermedades respiratorias'],
+                datasets: [
+                    {
+                        label: 'Enfermedades crónicas',
+                        data: [48, 52, 20, 15, 10],
+                        backgroundColor: 'rgba(33, 206, 189, 0.69)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        question: "Medios de contacto",
+        charts: [
+            {
+                labels: ['Facebook', 'Instagram', 'Twitter/X', 'WhatsApp'],
+                datasets: [
+                    {
+                        label: 'Redes Sociales',
+                        data: [20, 15, 25, 10],
+                        backgroundColor: 'rgba(72, 60, 60, 0.6)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            },
+            {
+                labels: ['Teléfono', 'Email'],
+                datasets: [
+                    {
+                        label: 'Otros',
+                        data: [20, 15],
+                        backgroundColor: 'rgba(24, 1, 1, 0.6)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            }
+        ]
+
+    },
+    {
+        question: "Geoestadística",
+        charts: [
+            {
+                labels: ['Las Lomas', 'Centro', 'Mitras Poniente'],
+                datasets: [
+                    {
+                        label: 'Colonias',
+                        data: [40, 30, 20],
+                        backgroundColor: 'rgba(35, 176, 82, 0.69)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            },
+            {
+                labels: ['Zona Norte', 'Zona Sur', 'Zona Centro'],
+                datasets: [
+                    {
+                        label: 'Zonas de García',
+                        data: [20, 15, 25],
+                        backgroundColor: 'rgba(180, 206, 33, 0.69)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            },
+            {
+                labels: ['García', 'Monterrey', 'San Nicolás'],
+                datasets: [
+                    {
+                        label: 'Municipios',
+                        data: [80, 10, 10],
+                        backgroundColor: 'rgba(33, 85, 206, 0.69)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            }
+        ],
+    },
+    {
+        question: "Electoral",
+        charts: [
+            {
+                labels: ['01', '02', '03'],
+                datasets: [
+                    {
+                        label: 'Distritos Locales',
+                        data: [60, 30, 10],
+                        backgroundColor: 'rgba(203, 157, 162, 0.69)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            },
+            {
+                labels: ['07', '08', '09'],
+                datasets: [
+                    {
+                        label: 'Distitos Federales',
+                        data: [20, 50, 30],
+                        backgroundColor: 'rgba(127, 141, 140, 0.69)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            },
+            {
+                labels: ['1621', '1622', '1623'],
+                datasets: [
+                    {
+                        label: 'Secciones',
+                        data: [60, 30, 10],
+                        backgroundColor: 'rgba(35, 140, 129, 0.69)',
+                        borderColor: 'rgb(11, 11, 11)',
+                        borderWidth: 1,
+                    }
+                ]
+            },
+        ]
+    }
+];
+
+const options = {
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'top',
+        },
+    },
+};
 
 const DashboardAdminSocioDem = () => {
-    const [activeChart, setActiveChart] = useState(null);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [openIndex, setOpenIndex] = useState(null);
 
-    const handleShowChart = (chart) => {
-        setActiveChart(chart);
-        setIsModalOpen(true);
+    const toggleFAQ = (index) => {
+        setOpenIndex(openIndex === index ? null : index);
     };
-
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-        setActiveChart(null);
-    };
-
-    const charts = [
-        { component: Chart1_1, label: "Edad" },
-        { component: Chart1_2, label: "Chart1_2" },
-        { component: Chart1_3, label: "Chart1_3" },
-        { component: Chart1_4, label: "Chart1_4" },
-        { component: Chart1_5, label: "Chart1_5" },
-        { component: Chart1_6, label: "Chart1_6" },
-        { component: Chart2_1, label: "Chart2_1" },
-        { component: Chart2_2, label: "Chart2_2" },
-        { component: Chart2_3, label: "Chart2_3" },
-        { component: Chart2_4, label: "Chart2_4" },
-        { component: Chart2_5, label: "Chart2_5" },
-        { component: Chart2_6, label: "Chart2_6" },
-        { component: Chart3_1, label: "Chart3_1" },
-        { component: Chart3_2, label: "Chart3_2" },
-        { component: Chart3_3, label: "Chart3_3" },
-        { component: Chart3_4, label: "Chart3_4" },
-        { component: Chart3_5, label: "Chart3_5" },
-        { component: Chart3_6, label: "Chart3_6" },
-    ];
 
     return (
-        <div className='containerRMC'>
-            <div className="containerH">
-                <h2 className="heading">Estadísticas</h2>
+        <div className='containerRMCs' style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
+            <div className='containerHs' style={{ textAlign: "center" }}>
+                <div className='heroContact'>
+                    <form className="formContact">
+                        <h2 className='heading'>Estadísticas de los usuarios</h2>
+                        <div style={{ overflowY: "auto", maxHeight: "60vh", minWidth: "65vw", textAlign: "center" }}>
+                            {faqs.map((faq, index) => (
+                                <div key={index}>
+                                    <div
+                                        className='inputContact submit'
+                                        style={{
+                                            width: "65vw",
+                                            backgroundColor: openIndex === index ? "rgb(133,66,166)" : "transparent", // Change background color when active
+                                            color: openIndex === index ? "white" : "rgb(120, 117, 117)", // Change text color when active
+                                            textAlign: "center", // Center text
+                                        }}
+                                        onClick={() => toggleFAQ(index)}
+                                    >
+                                        <h5>{faq.question}</h5>
+                                    </div>
 
-                {/* Botones para mostrar gráficos */}
-                <div className="row mt-4">
-                    {charts.map((chart, index) => (
-                        <div key={index} className="col-md-4 mb-3 text-center">
-                            <button
-                                type="button"
-                                className="login-buttonesFAQ"
-                                style={{ width: '80%' }}
-                                onClick={() => handleShowChart(chart)}
-                            >
-                                {chart.label}
-                            </button>
+                                    {openIndex === index && (
+                                        <div
+                                            className='inputContacts'
+                                            style={{
+                                                width: "65vw",
+                                                backgroundColor: "white",
+                                                textAlign: "center",
+                                                padding: "10px",
+                                                borderRadius: "8px",
+                                                marginBottom: "15px",
+                                            }}
+                                        >
+                                            {faq.charts ? (
+                                                faq.charts.map((chartData, chartIndex) => (
+                                                    <div key={chartIndex} style={{ marginBottom: "30px" }}>
+                                                        <Bar data={chartData} options={options} />
+                                                    </div>
+                                                ))
+                                            ) : (
+                                                <p>{faq.answer}</p>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    </form>
                 </div>
-
-                {/* Modal */}
-                {isModalOpen && (
-                    <div className="modal fade show d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-                        <div className="modal-dialog modal-lg">
-                            <div className="modal-content container">
-                                <div className="modal-header">
-                                    <h5 className="modal-title">Gráfico: {activeChart?.label}</h5>
-                                    <button type="button" className="btn-close" onClick={handleCloseModal}></button>
-                                </div>
-                                <div className="modal-body d-flex justify-content-center">
-                                    {activeChart && React.createElement(activeChart.component)}
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>
-                                        Cerrar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                )}
             </div>
         </div>
     );

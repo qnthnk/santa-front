@@ -1,108 +1,108 @@
 /* PaypalBalance.css - Estilos exclusivos para la vista de PaypalBalance */
 
 body {
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
 .paypal-page {
-    width: 100%;
-    min-height: 100vh;
-    overflow-y: auto;
-    padding: 20px;
-    background: #f8f9fd;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .paypal-container {
-    width: 100%;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-  
-  .paypal-card {
-    background: linear-gradient(135deg, #060606 0%, #2b5876 100%);
-    color: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 400px;
-  }
-  
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
+  padding: 20px;
+  background: #f8f9fd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paypal-container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.paypal-card {
+  background: linear-gradient(135deg, #060606 0%, #2b5876 100%);
+  color: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.paypal-form {
+  background-color: rgb(133, 66, 166);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.paypal-form label {
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+
+.paypal-form input,
+.paypal-form select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  width: 100%;
+}
+
+.paypal-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.paypal-form button {
+  padding: 14px;
+  background: whitesmoke;
+  color: rgb(133, 66, 166);
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.paypal-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(139, 59, 171, 0.4);
+}
+
+@media (max-width: 768px) {
   .paypal-form {
-    background-color: rgb(134, 37, 68);
-    backdrop-filter: blur(10px);
-    padding: 30px;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 500px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    padding: 20px;
   }
-  
-  .paypal-form label {
-    font-size: 0.9em;
-    margin-bottom: 5px;
+
+  .paypal-card {
+    font-size: 14px;
   }
-  
+}
+
+@media (max-width: 480px) {
+
   .paypal-form input,
   .paypal-form select {
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 16px;
-    background-color: rgba(255, 255, 255, 0.05);
-    color: white;
-    width: 100%;
+    font-size: 14px;
   }
-  
-  .paypal-form input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-  }
-  
+
   .paypal-form button {
-    padding: 14px;
-    background: whitesmoke;
-    color: rgb(134, 37, 68);
-    font-size: 18px;
-    font-weight: 500;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    font-size: 16px;
   }
-  
-  .paypal-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(139, 59, 171, 0.4);
-  }
-  
-  @media (max-width: 768px) {
-    .paypal-form {
-      padding: 20px;
-    }
-  
-    .paypal-card {
-      font-size: 14px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .paypal-form input,
-    .paypal-form select {
-      font-size: 14px;
-    }
-  
-    .paypal-form button {
-      font-size: 16px;
-    }
-  }
-  
+}

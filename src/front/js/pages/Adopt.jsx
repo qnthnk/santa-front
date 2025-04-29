@@ -31,51 +31,65 @@ const dogs = [
 ]
 const Adopt = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const [modalImage, setModalImage] = useState(null);
   
     const toggleFAQ = (index) => {
       setOpenIndex(openIndex === index ? null : index);
     };
   
     return (
-      <div className='containerRMCs'>
-        <div className='containerHs'>
-          {/* MODAL DEMO */}
-          <button type="button" className="DemoButton" style={{ width: "50px", height: "50px", borderRadius: "50%" }} data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <FaInfo className='DemoButton' />
-          </button>
-          <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-              <div className="modal-content demoContainer">
-                <div className="modal-body">
-                  <div className=''>Está pensado como un tríptico digital en el que se pueda brindar información de uso común a la ciudadanía. De igual manera, sirve de periódico mural para publicar las actualizaciones de las acciones de gobierno que se lleven a cabo.</div>
-                </div>
-                <div className="modal-content">
-                  <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        {/* MODAL DEMO */}
-                  <div className='heroContact'>
-                  <form className="formContact">
-                    <h2 className='heading'>Adopta</h2>
-                    <div style={{ overflowY: "auto", maxHeight: "50vh", minWidth: "65vw" }}>
-                      {dogs.map((dog, index) => (
-                        <div key={index}>
-                          <div className='inputContact submit' style={{width:"65vw"}} onClick={() => toggleFAQ(index)} >
-                            <img src={dog.image} style={{width:"50vw" ,borderRadius:"20px"}} />
-                          </div>
-          
-                          {/* <div className={`collapse ${openIndex === index ? 'show' : ''}`} style={{ overflowY: "auto", maxHeight: "40vh", minWidth: "80vw" }}>
-                            <div className="inputContacts">{dog.answer}</div>
-                          </div> */}
-                </div>
-              ))}
-            </div>
-            </form>
-          </div>
-        </div>
-      </div>);
+      <div className='containerRMCs' style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
+      <div className='containerHs' style={{ textAlign: "center" }}>
+      <div className='heroContact'>
+      <form className="formContact">
+      <h2 className='heading'>Adopta</h2>
+      <div style={{ overflowY: "auto", maxHeight: "50vh", width: "90%", margin: "0 auto" }}>
+      {dogs.map((dog, index) => (
+      <div key={index} style={{ marginBottom: "20px" }}>
+      <div
+        className='inputContact submit'
+        style={{ width: "100%", margin: "0 auto" }}
+        onClick={() => toggleFAQ(index)}
+      >
+        <img
+        src={dog.image}
+        style={{ width: "100%", maxWidth: "600px", borderRadius: "20px", cursor: "pointer" }}
+        onClick={() => setModalImage(dog.image)}
+        />
+      </div>
+      </div>
+      ))}
+      </div>
+      </form>
+      </div>
+      </div>
+      {modalImage && (
+      <div
+      style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 1000,
+      flexDirection: "column",
+      }}
+      
+      >
+      <img
+      src={modalImage}
+      style={{ width: "90%", maxWidth: "700px", maxHeight: "70vh", borderRadius: "10px" }}
+      alt="Dog"
+      />
+      <button className="buttonPearl" style={{width:"120px", height:"50px", borderRadius:"20px", color:'white', marginTop: "20px"}} onClick={() => setModalImage(null)}>Cerrar</button>
+      </div>
+      )}
+      </div>
+    );
   };
 
 export default Adopt;

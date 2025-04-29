@@ -133,61 +133,52 @@ const Complaint = () => {
     }, []);
 
     return (
-        <div className='containerRMC'>
-            <div className='containerH'>
-                {/* MODAL DEMO */}
-                <button type="button" className="DemoButton" style={{ width: "50px", height: "50px", borderRadius: "50%" }} data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    <FaInfo className='DemoButton' />
-                </button>
-                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                        <div className="modal-content demoContainer">
-                            <div className="modal-body">
-                                <div>Se puede entrenar para dar respuestas orientadas al discurso de la administración, como por ejemplo las acciones de gobierno actuales o los actos que se están investigando de las administraciones pasadas. Para este Demo, solo funciona como ChatGPT de consulta generalizada</div>
-                            </div>
-                            <div className="modal-content">
-                                <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Cerrar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* MODAL DEMO */}
-                <div className='container'>
-                    <p className='heading'>Denuncia Ciudadana</p>
-                    <div>
+        <div className='containerRMCs'>
+        <div className='containerHs'>
+          <div className='heroContact'>
+            <form className="formContact">
+              <h2 className='heading'>Denuncia Ciudadana</h2>
+              <div style={{ overflowY: "auto", overflowX:"hidden", maxHeight: "50vh", width:"auto",  textAlign: "center" }}>
                         <div style={{ marginBottom: "20px" }}>
-                            <label htmlFor="cause" style={{ display: "block", marginBottom: "5px" }}>Motivo:</label>
-                            <input
-                                type="text"
+                            <select
                                 id="cause"
                                 name="cause"
+                                className='inputContacts'
                                 value={complaintData.cause}
                                 onChange={handleChange}
-                                style={{ width: "100%", padding: "8px", border: "1px solid #ccc", borderRadius: "4px" }}
-                            />
+                                style={{ width: "55vw", borderRadius: "20px", padding: "10px",display: "flex", justifyContent: "center" }}
+                            >
+                                <option value="">Seleccione el motivo de la denuncia</option>
+                                <option value="Bache">Bache</option>
+                                <option value="Vecino ruidoso">Vecino ruidoso</option>
+                                <option value="Maltrato animal">Maltrato animal</option>
+                                <option value="Alumbrado público">Alumbrado público</option>
+                                <option value="Fuga de agua">Fuga de agua</option>
+                                <option value="Recolección de basura">Recolección de basura</option>
+                                <option value="Acto de corrupción">Acto de corrupción</option>
+                                <option value="Otros">Otros</option>
+
+                            </select>
                         </div>
                         <div style={{ marginBottom: "20px" }}>
-                            <label htmlFor="complaint_comment" style={{ display: "block", marginBottom: "5px" }}>Comentario:</label>
                             <textarea
                                 id="complaint_comment"
                                 name="complaint_comment"
+                                className='inputContacts'
+                                placeholder='Detalles de la denuncia'
                                 value={complaintData.complaint_comment}
                                 onChange={handleChange}
-                                style={{ width: "100%", padding: "8px", border: "1px solid #ccc", borderRadius: "4px", minHeight: "100px" }}
+                                style={{ width: "55vw", height:"20vh", borderRadius: "20px", padding: "10px",display: "flex", justifyContent: "center" }}
+
                             />
                         </div>
                         <div style={{ textAlign: "center" }}>
-                            <input type="file" accept="image/*" capture="camera" onChange={handleImageUpload} />
+                            <input  type="file" accept="image/*" capture="camera" onChange={handleImageUpload} />
                             <div style={{ marginTop: "20px" }}>
                                 {image ? (
                                     <img src={image}
                                         alt="Uploaded"
-                                        style={{
-                                            maxWidth: "100%",
-                                            maxHeight: "300px",
-                                            border: "1px solid #ccc",
-                                            padding: "10px"
-                                        }}
+                                        style={{width:"45vw" ,borderRadius:"20px"}}
                                     />
                                 ) : (
                                     <div
@@ -201,13 +192,14 @@ const Complaint = () => {
                                             backgroundColor: "#f9f9f9"
                                         }}
                                     >
-                                        <span style={{ color: "#aaa" }}>No image uploaded</span>
+                                        <span style={{ color: "#aaa" }}>Toma una foto desde tu celular</span>
                                     </div>
                                 )}
                             </div>
                         </div>
-                        <button type="submit" className="login-buttont" onClick={handleSubmit}>Enviar</button>
+                        <button type="submit" className="buttonPearl" style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} onClick={handleSubmit}>Enviar</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

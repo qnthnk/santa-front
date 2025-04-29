@@ -4,9 +4,11 @@
 	display: grid;
 	place-items: center;
 	/* Centers content both horizontally and vertically */
-    font-family: 'Roboto', sans-serif;
-    margin-top: 70px; /* Adjust the value as needed for the navbar */
-    margin-bottom: 20px; /* Adjust the value as needed for the footer */
+	font-family: 'Roboto', sans-serif;
+	margin-top: 70px;
+	/* Adjust the value as needed for the navbar */
+	margin-bottom: 20px;
+	/* Adjust the value as needed for the footer */
 }
 
 
@@ -19,8 +21,8 @@
 }
 
 
-  
-  .heroContact {
+
+.heroContact {
 	padding: 60px 20px;
 	width: 100%;
 	height: 100%;
@@ -29,16 +31,16 @@
 	justify-content: center;
 	background-color: #f7f7f7;
 	border-radius: 2rem;
-  }
-  
-  .formContact {
+}
+
+.formContact {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	font-size: 1rem;
-  }
-  
+}
+
 .inputContact {
 	padding: 1rem 1.2rem;
 	margin: 1rem;
@@ -47,7 +49,7 @@
 	width: 80%;
 	border: none;
 	box-shadow: inset 6px 6px 8px rgba(97, 97, 97, 0.075),
-	  6px 6px 6px rgba(255, 255, 255, 0.781);
+		6px 6px 6px rgba(255, 255, 255, 0.781);
 	outline: none;
 	background-color: inherit;
 	color: rgb(231, 225, 225);
@@ -55,13 +57,14 @@
 }
 
 .inputContact:focus {
-	background-color: rgb(134, 37, 68); /* Change background color when active */
+	background-color: rgb(133, 66, 166);
+	/* Change background color when active */
 	color: #f7f7f7;
 	transform: translateY(-2px) ease-in-out;
 }
 
 
-  .inputContacts {
+.inputContacts {
 	padding: 1rem 1.2rem;
 	margin: 1rem;
 	border-radius: 2rem;
@@ -69,45 +72,47 @@
 	width: 100%;
 	border: none;
 	box-shadow: inset 6px 6px 8px rgba(97, 97, 97, 0.075),
-	  6px 6px 6px rgba(255, 255, 255, 0.781);
+		6px 6px 6px rgba(255, 255, 255, 0.781);
 	outline: none;
 	background-color: inherit;
 	color: rgb(84, 75, 75);
 	font-size: inherit;
-  }
-  
-  .submit , .btn {
+}
+
+.submit,
+.btn {
 	margin-top: 20px;
 	font-weight: bold;
 	box-shadow: -3px -3px 5px white, 3px 3px 5px rgba(209, 209, 209, 0.705);
 	color: rgb(112, 112, 112);
 	cursor: pointer;
-  }
-  
-  .btn {
+}
+
+.btn {
 	text-align: center;
 	color: black;
-  }
-  
-  
-  ::placeholder {
+}
+
+
+::placeholder {
 	color: rgb(161, 161, 161);
-  }
-  
-  
-  a {
+}
+
+
+a {
 	color: inherit;
 	font-weight: bold;
 	text-decoration: none;
-  }
-  
-  .or {
+}
+
+.or {
 	position: relative;
 	font-weight: bold;
 	color: rgb(112, 112, 112);
-  }
-  
-  .or::before , .or::after {
+}
+
+.or::before,
+.or::after {
 	position: absolute;
 	content: '';
 	width: 700%;
@@ -115,12 +120,10 @@
 	top: 50%;
 	margin: 0 6px;
 	background-color: rgba(0, 0, 0, 0.479);
-  }
-  
-  .or::before {
+}
+
+.or::before {
 	right: 100%;
-  }
-  
-  .or::after {
-  }
-  
+}
+
+.or::after {}

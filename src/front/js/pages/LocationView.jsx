@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { FaInfo } from "react-icons/fa";
 
 
+
 const libraries = ["places"];
 const mapContainerStyle = { width: "100%", height: "350px" };
 
@@ -36,6 +37,22 @@ const LocationView = () => {
 
     return (
         <div className='containerRMC'>
+            {!isLoaded ? (
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "100%",
+                        height: "100vh",
+                        position: "absolute",
+                        backgroundColor: "rgba(255, 255, 255, 0.8)",
+                        zIndex: 10,
+                    }}
+                >
+                    <p style={{ fontSize: "1.5rem", fontWeight: "bold", color:"black" }}>Cargando...</p>
+                </div>
+            ) : null}
           <div className='containerH'>
       <div className="formContact">
                 {!isLoaded ? (
@@ -54,24 +71,7 @@ const LocationView = () => {
                     </div>
                 ) : (
                     <>
-                        {/* MODAL DEMO */}
-                        <button type="button" className="DemoButton" style={{ width: "50px", height: "50px", borderRadius: "50%" }} data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <FaInfo className='DemoButton' />
-                        </button>
-                        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                <div className="modal-content demoContainer">
-                                    <div className="modal-body">
-                                        <div className=''>Se presentan al menos 3 tipos de ubicaciones. Pueden ser oficinas de gobierno, bomberos, auxilio, policia o cualquier instalación que se considere prudente. Si son lugares nuevos, se procede a darlos de alta en google para que puedan aparecer </div>
-                                    </div>
-                                    <div className="modal-content">
-                                        <button type="button" className="btn btn-warning" data-bs-dismiss="modal">Cerrar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {/* MODAL DEMO */}
-                                                <div className="inputContact " style={{ width: "90vw", maxHeight:"90vh", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                                <div className="inputContact " style={{ width: "90vw", maxHeight:"90vh", display: "flex", flexDirection: "column", alignItems: "center"}}>
                                                     <GoogleMap
                                                         mapContainerStyle={mapContainerStyle}
                                                         center={store.userLocation}
@@ -103,15 +103,17 @@ const LocationView = () => {
 
                                                     
                         </div>
-                        <div className="inputContact " style={{ borderRadius: "none", textAlign: "center", color:"black", maxHeight:"90vh" }}>
+                        <div className="inputContact " style={{ borderRadius: "none", textAlign: "center", color:"black", maxHeight:"30vh", overflowY:"auto"}}>
                                                         {store.nearbyPlaces.length > 0 ? (
                                                             store.nearbyPlaces.map((place, index) => (
                                                                 <div key={index} >
                                                                     <h2>{place.displayName?.text || "Sin nombre"}</h2>
                                                                     <p>{place.formattedAddress || "Dirección desconocida"}</p>
                                                                     {place.internationalPhoneNumber && (
-                                                                        <p><hr />Teléfono: {place.internationalPhoneNumber}</p>
+                                                                        <p>Teléfono: {place.internationalPhoneNumber}</p>
+                                                                        
                                                                     )}
+                                                                    <hr />
                                                                 </div>
                                                             ))
                                                         ) : (
