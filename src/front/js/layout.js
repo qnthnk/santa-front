@@ -32,6 +32,7 @@ import Complaint from "./pages/Complaint.jsx";
 import Adopt from "./pages/Adopt.jsx";
 import Expediente from "./pages/Expediente.jsx";
 import MapIne from "./pages/MapIne.jsx";
+import PatientProfile from "./pages/PatientProfile.jsx";
 
 const Layout = () => {
     const [token, setToken] = useState(localStorage.getItem("token"));
@@ -102,6 +103,7 @@ const Layout = () => {
                     <Route path="/mapine" element={<MapIne />} />
                     <Route path="/adopt" element={<Adopt />} />
                     <Route path="/expediente" element={<Expediente />} />
+                    <Route path="/patient-profile" element={<PatientProfile />} />
                     <Route path="*" element={<Navigate to="/login" replace />} />
                 </Routes>
                 {/* </div> */}

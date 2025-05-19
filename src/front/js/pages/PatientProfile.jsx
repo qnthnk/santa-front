@@ -7,9 +7,8 @@ const mapContainerStyle = {
     height: '300px'
 };
 
-const Expediente = () => {
-    const { actions } = useContext(Context);
-    const [users, setUsers] = useState([]);
+const PatientProfile = () => {
+    const { store, actions } = useContext(Context);
     const [selectedUser, setSelectedUser] = useState(null);
     const [loading, setLoading] = useState(false);
     const { isLoaded, loadError } = useLoadScript({
@@ -17,52 +16,29 @@ const Expediente = () => {
     });
 
     useEffect(() => {
-        const loadUsers = async () => {
+        const loadUserData = async () => {
             setLoading(true);
             try {
                 const usersData = await actions.getAllUsers();
-                setUsers(usersData);
+                const currentUser = usersData.find(user => user.email === store.currentUserEmail); // Usa el email de sesión
+                setSelectedUser(currentUser);
             } catch (error) {
-                console.error("Error cargando usuarios:", error);
+                console.error("Error al cargar el usuario:", error);
             } finally {
                 setLoading(false);
             }
         };
-        loadUsers();
-    }, []);
-
-    const handleSelectUser = (userId) => {
-        const user = users.find(u => u.id === userId);
-        setSelectedUser(user);
-    };
+        loadUserData();
+    }, [store.currentUserEmail]);
 
     const formatField = (value) => value || 'No especificado';
 
     return (
-
         <div className='containerRMCs' style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
-
             <div className='containerHs' style={{ textAlign: "center" }}>
                 <div className='heroContact'>
                     <form className="formContact" style={{ overflowY: 'auto' }}>
                         <h2 className='heading'>Expediente</h2>
-                        <div style={{ overflowY: "auto", maxHeight: "50vh", width: "90%", margin: "0 auto" }}>
-                            <div className="inputContacts">
-                                <label className="heading">Seleccione un Usuario</label>
-                                <select
-                                    className="form-select"
-                                    onChange={(e) => handleSelectUser(parseInt(e.target.value))}
-                                    disabled={loading}
-                                >
-                                    <option value="">-- Seleccione un usuario --</option>
-                                    {users.map(user => (
-                                        <option key={user.id} value={user.id}>
-                                            {user.first_name} {user.first_last_name} ({user.email})
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
 
                         {loading && (
                             <div className="text-center my-4">
@@ -123,17 +99,7 @@ const Expediente = () => {
                                                         center={{ lat, lng }}
                                                         zoom={14}
                                                     >
-                                                        <Marker
-                                                            position={{
-                                                                lat: lat,
-                                                                lng: lng,
-                                                            }}
-                                                            onClick={() =>
-                                                                Swal.fire(
-                                                                    `${place.displayName?.text || "Sin nombre"}\nDirección: ${place.formattedAddress}\nTeléfono: ${place.internationalPhoneNumber || "No disponible"}`
-                                                                )
-                                                            }
-                                                        />
+                                                        <Marker position={{ lat, lng }} />
                                                     </GoogleMap>
                                                 );
                                             })()}
@@ -151,4 +117,4 @@ const Expediente = () => {
     );
 };
 
-export default Expediente;
+export default PatientProfile;

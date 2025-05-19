@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Context } from '../store/appContext';
-import postalCodesData from './../../../../csvjson.json';
 import './../../styles/Register.css';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -20,31 +19,46 @@ const Register = () => {
     first_name: '',
     first_last_name: '',
     second_last_name: '',
-    curp: '',
     gender: '',
     birthdate: '',
     email: '',
     password: '',
-    phone_number: '',
     facebook: '',
     instagram: '',
     x: '',
-    blood_type: '',
-    allergy: '',
-    disease: '',
-    state: 'Nuevo León',
+    state: '',
     colonia_mex: '',
-    house_number: 'none',
+    house_number: '',
     street: '',
-    seccion: 'none',
     zip_code: '',
-    distrito_federal: 'none',
-    distrito_local: 'none',
-    nombre_municipio: '',
-    tipo_seccion: 'none',
+    municipality: '',
+    country:'',
+    marriage_status: '',
+    age: '',
+    occupation: '',
+    phone_number_home: '',
+    phone_number_work: '',
+    phone_number_mobile: '',
+    reffered_by: '',
     latitude: '',
     longitude: ''
   });
+
+  useEffect(() => {
+    if (formData.birthdate) {
+      const birthDate = new Date(formData.birthdate);
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      setFormData(prevData => ({
+        ...prevData,
+        age: age.toString()
+      }));
+    }
+  }, [formData.birthdate]);
 
   const [errors, setErrors] = useState({});
   const [matchingColonies, setMatchingColonies] = useState([]);
@@ -75,26 +89,23 @@ const Register = () => {
       if (!formData.first_name.trim()) newErrors.first_name = genericLegend;
       if (!formData.first_last_name.trim()) newErrors.first_last_name = genericLegend;
       if (!formData.second_last_name.trim()) newErrors.second_last_name = genericLegend;
-      if (!formData.curp.trim()) {
-        newErrors.curp = genericLegend;
-      } else if (!/^[A-Z]{4}\d{6}[A-Z]{6}[A-Z0-9]{0,2}$/.test(formData.curp)) {
-        newErrors.curp = "Ingrese un CURP válido.";
-      }
+      if (!formData.gender.trim()) newErrors.gender = genericLegend;
+      if (!formData.birthdate.trim()) newErrors.birthdate = genericLegend;
+      if (!formData.marriage_status.trim()) newErrors.marriage_status = genericLegend;
+      if (!formData.occupation.trim()) newErrors.occupation = genericLegend;
     }
 
     if (currentStep === 2) {
+      if (!formData.state.trim()) newErrors.state = genericLegend;
+if (!formData.municipality.trim()) newErrors.municipality = genericLegend;
+
       if (!formData.street.trim()) newErrors.street = genericLegend;
       if (!formData.zip_code.trim()) {
         newErrors.zip_code = genericLegend;
       } else if (!/^\d{5}$/.test(formData.zip_code)) {
         newErrors.zip_code = "Ingrese un código postal válido de 5 dígitos.";
-      } else if (matchingColonies.length === 0 && formData.nombre_municipio === '' && formData.zip_code.length === 5) {
-        newErrors.zip_code = "Código postal no encontrado.";
-      }
-
-      if (matchingColonies.length > 0 && !formData.colonia_mex) {
-        newErrors.colonia_mex = "Debes seleccionar una colonia.";
-      }
+      } 
+      if (!formData.country.trim()) newErrors.country = genericLegend;
     }
 
     if (currentStep === 3) {
@@ -103,20 +114,15 @@ const Register = () => {
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
         newErrors.email = "Formato de email inválido.";
       }
-      if (!formData.phone_number.trim()) {
-        newErrors.phone_number = genericLegend;
-      } else if (!/^\d{10}$/.test(formData.phone_number)) {
-        newErrors.phone_number = "El teléfono debe contener 10 dígitos.";
+      if (!formData.phone_number_mobile.trim()) {
+        newErrors.phone_number_mobile = genericLegend;
+      } else if (!/^\d{10}$/.test(formData.phone_number_mobile)) {
+        newErrors.phone_number_mobile = "El teléfono debe contener 10 dígitos.";
       }
+      
     }
 
     if (currentStep === 4) {
-      if (!formData.blood_type.trim()) newErrors.blood_type = genericLegend;
-      if (!formData.allergy.trim()) newErrors.allergy = genericLegend;
-      if (!formData.disease.trim()) newErrors.disease = genericLegend;
-    }
-
-    if (currentStep === 5) {
       if (!formData.password) {
         newErrors.password = genericLegend;
       } else if (formData.password.length < 8) {
@@ -125,7 +131,9 @@ const Register = () => {
       if (!recaptchaToken) {
         newErrors.recaptcha = "Por favor completa la verificación reCAPTCHA.";
       }
+      
     }
+
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -146,100 +154,6 @@ const Register = () => {
     }
   };
 
-  const handleZipCodeChange = (e) => {
-    const zipCode = e.target.value;
-
-    if (!/^\d*$/.test(zipCode) || zipCode.length > 5) {
-      return;
-    }
-
-    setFormData(prevData => ({
-      ...prevData,
-      zip_code: zipCode,
-      nombre_municipio: '',
-      colonia_mex: ''
-    }));
-
-    setMatchingColonies([]);
-
-    if (errors.zip_code || errors.colonia_mex) {
-      setErrors(prevErrors => ({
-        ...prevErrors,
-        zip_code: undefined,
-        colonia_mex: undefined
-      }));
-    }
-
-    if (zipCode.length === 5) {
-      const dataForZip = postalCodesData[zipCode];
-
-      if (dataForZip) {
-        const municipio = dataForZip.MUNICIPIO;
-        const coloniesString = dataForZip.COLONIAS || '';
-
-        const coloniesArray = coloniesString
-          .split(',')
-          .map(colonia => colonia.trim())
-          .filter(colonia => colonia !== '')
-          .sort();
-
-        setMatchingColonies(coloniesArray);
-
-        setFormData(prevData => ({
-          ...prevData,
-          nombre_municipio: municipio
-        }));
-
-      } else {
-        setMatchingColonies([]);
-        setErrors(prevErrors => ({
-          ...prevErrors,
-          zip_code: "Código postal no encontrado."
-        }));
-      }
-    }
-  };
-
-  const handleCURPChange = (e) => {
-    const { value } = e.target;
-    const curp = value.toUpperCase();
-    const { birthdate, gender } = extractBirthdateAndGenderFromCURP(curp);
-
-    setFormData(prevData => ({
-      ...prevData,
-      curp: curp,
-      birthdate: birthdate,
-      gender: gender
-    }));
-
-    if (errors.curp) {
-      setErrors(prevErrors => ({ ...prevErrors, curp: undefined }));
-    }
-  };
-
-  const extractBirthdateAndGenderFromCURP = (curp) => {
-    if (curp && curp.length === 18) {
-      const rawYear = curp.substring(4, 6);
-      const month = curp.substring(6, 8);
-      const day = curp.substring(8, 10);
-      const genderChar = curp[10];
-
-      const yearDigits = parseInt(rawYear, 10);
-      const currentYearLastTwoDigits = new Date().getFullYear() % 100;
-      const fullYear = yearDigits <= currentYearLastTwoDigits ? `20${rawYear}` : `19${rawYear}`;
-
-      const dateObj = new Date(`${fullYear}-${month}-${day}`);
-      if (isNaN(dateObj.getTime()) || dateObj.getDate() !== parseInt(day, 10) || dateObj.getMonth() + 1 !== parseInt(month, 10)) {
-        return { birthdate: '', gender: '' };
-      }
-
-      const birthdate = `${fullYear}-${month}-${day}`;
-      const gender = genderChar === 'H' ? 'Hombre' : genderChar === 'M' ? 'Mujer' : '';
-
-      return { birthdate, gender };
-    }
-    return { birthdate: '', gender: '' };
-  };
 
   const handleNext = () => {
     if (validateForm(step)) {
@@ -251,7 +165,7 @@ const Register = () => {
 
   const handleBack = () => {
     setStep(step - 1);
-    if (step === 5) {
+    if (step === 4) {
       resetRecaptcha();
     }
   };
@@ -259,7 +173,7 @@ const Register = () => {
   // Handler de envío modificado para incluir reCAPTCHA
   const handleSubmit = async () => {
     setIsSubmitting(true);
-    if (!validateForm(5)) {
+    if (!validateForm(4)) {
       Swal.fire("Formulario incompleto", "Por favor complete los campos requeridos en el último paso.", "warning");
       setIsSubmitting(false);
       return;
@@ -310,7 +224,7 @@ const Register = () => {
   }, []);
 
   return (
-    
+
     <div className='containerRMCs'>
       <div className='containerHs'>
         <h3 className='heading'>Completa el siguiente formulario para inscribirte</h3>
@@ -325,15 +239,61 @@ const Register = () => {
                 {errors.first_last_name && <p className="error-text">{errors.first_last_name}</p>}
                 <input className={`inputContacts ${errors.second_last_name ? 'input-error' : ''}`} type="text" name="second_last_name" placeholder='Apellido Materno' value={formData.second_last_name} onChange={handleChange} />
                 {errors.second_last_name && <p className="error-text">{errors.second_last_name}</p>}
-                <input className={`inputContacts ${errors.curp ? 'input-error' : ''}`} type="text" name="curp" placeholder='CURP (18 caracteres)' value={formData.curp} onChange={handleCURPChange} maxLength="18" style={{ textTransform: 'uppercase' }} />
-                {errors.curp && <p className="error-text">{errors.curp}</p>}
-                <button className='buttonPearl'style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleNext}>Siguiente</button>
+                <select
+                  className={`inputContacts ${errors.gender ? 'input-error' : ''}`}
+                  name="gender"
+                  value={formData.gender}
+                  onChange={handleChange}
+                >
+                  <option value="">Seleccione su género</option>
+                  <option value="masculino">Masculino</option>
+                  <option value="femenino">Femenino</option>
+                </select>
+                {errors.gender && <p className="error-text">{errors.gender}</p>}
+                <input className={`inputContacts ${errors.birthdate ? 'input-error' : ''}`} type="date" name="birthdate" placeholder='Fecha de Nacimiento' value={formData.birthdate} onChange={handleChange} />
+                {errors.birthdate && <p className="error-text">{errors.birthdate}</p>}
+                <div>
+                  <p>Edad: {formData.age} años</p>
+                </div>
+                <select
+                  className={`inputContacts ${errors.marriage_status ? 'input-error' : ''}`}
+                  name="marriage_status"
+                  value={formData.marriage_status}
+                  onChange={handleChange}
+                >
+                  <option value="">Seleccione su estado civil</option>
+                  <option value="soltera/o">Soltera/o</option>
+                  <option value="casada/o">Casada/o</option>
+                  <option value="divorciada/o">Divorciada/o</option>
+                  <option value="viuda/o">Viuda/o</option>
+                  <option value="union libre">Union libre</option>
+                  <option value="separada/o">Separada/o</option>
+                  <option value="no especificado">No especificado</option>
+                  <option value="otro">Otro</option>
+                  <option value="prefiero no decir">Prefiero no decir</option>
+                </select>
+                {errors.marriage_status && <p className="error-text">{errors.marriage_status}</p>}
+                <input className={`inputContacts ${errors.occupation ? 'input-error' : ''}`} type="text" name="occupation" placeholder='Ocupación (opcional)' value={formData.occupation} onChange={handleChange} />
+                {errors.occupation && <p className="error-text">{errors.occupation}</p>}
+                <button className='buttonPearl' style={{ width: "120px", height: "50px", borderRadius: "20px", color: 'white' }} type="button" onClick={handleNext}>Siguiente</button>
               </div>
             )}
 
             {step === 2 && (
               <div>
                 <h3 className='heading'>Paso 2: Dirección</h3>
+                <input className={`inputContacts ${errors.country ? 'input-error' : ''}`} type="text" name="country" placeholder='País (opcional)' value={formData.country} onChange={handleChange} />
+                {errors.country && <p className="error-text">{errors.country}</p>}
+                <input
+                  className={`inputContacts ${errors.state ? 'input-error' : ''}`}
+                  type="text"
+                  name="state"
+                  placeholder='Estado (opcional)'
+                  value={formData.state}
+                  onChange={handleChange}
+                />
+                {errors.state && <p className="error-text">{errors.state}</p>}
+
                 <input
                   className={`inputContacts ${errors.zip_code ? 'input-error' : ''}`}
                   type="text"
@@ -341,51 +301,50 @@ const Register = () => {
                   name="zip_code"
                   placeholder='Código Postal (5 dígitos)'
                   value={formData.zip_code}
-                  onChange={handleZipCodeChange}
+                  onChange={handleChange}
                 />
                 {errors.zip_code && <p className="error-text">{errors.zip_code}</p>}
+                <input
+                  className={`inputContacts ${errors.municipality ? 'input-error' : ''}`}
+                  type="text"
+                  name="municipality"
+                  placeholder='Municipio'
+                  value={formData.municipality}
+                  onChange={handleChange}
+                />
+                {errors.municipality && <p className="error-text">{errors.municipality}</p>}
+                <input
+                  className={`inputContacts ${errors.colonia_mex ? 'input-error' : ''}`}
+                  name="colonia_mex"
+                  value={formData.colonia_mex}
+                  onChange={handleChange} 
+                  placeholder='Colonia'
+                  type='text'
+                  />
+                {errors.colonia_mex && <p className="error-text">{errors.colonia_mex}</p>}
 
-                {formData.nombre_municipio && (
-                  <div className='info-display-box'>
-                    <p>Municipio: {formData.nombre_municipio}</p>
-                    <p>Estado: {formData.state}</p>
-                  </div>
-                )}
-
-                {matchingColonies.length > 0 && (
-                  <>
-                    <label htmlFor="colonia_mex" className="form-label">Colonia:</label>
-                    <select
-                      id="colonia_mex"
-                      className={`inputContacts ${errors.colonia_mex ? 'input-error' : ''}`}
-                      name="colonia_mex"
-                      value={formData.colonia_mex}
-                      onChange={handleChange}
-                    >
-                      <option value="">Selecciona una colonia...</option>
-                      {matchingColonies.map((colonia, index) => (
-                        <option key={index} value={colonia}>
-                          {colonia}
-                        </option>
-                      ))}
-                    </select>
-                    {errors.colonia_mex && <p className="error-text">{errors.colonia_mex}</p>}
-                  </>
-                )}
 
                 <input
                   className={`inputContacts ${errors.street ? 'input-error' : ''}`}
                   type="text"
                   name="street"
-                  style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}}
                   placeholder='Calle y Número Ext./Int.'
                   value={formData.street}
                   onChange={handleChange}
                 />
                 {errors.street && <p className="error-text">{errors.street}</p>}
+                <input
+                  className={`inputContacts ${errors.house_number ? 'input-error' : ''}`}
+                  type="text"
+                  name="house_number"
+                  placeholder='Número de casa'
+                  value={formData.house_number}
+                  onChange={handleChange}
+                />
+                {errors.house_number && <p className="error-text">{errors.house_number}</p>}
 
-                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleBack}>Atrás</button>
-                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleNext}>Siguiente</button>
+                <button className='buttonPearl' style={{ width: "120px", height: "50px", borderRadius: "20px", color: 'white' }} type="button" onClick={handleBack}>Atrás</button>
+                <button className='buttonPearl' style={{ width: "120px", height: "50px", borderRadius: "20px", color: 'white' }} type="button" onClick={handleNext}>Siguiente</button>
               </div>
             )}
 
@@ -394,56 +353,44 @@ const Register = () => {
                 <h3 className='heading'>Paso 3: Datos de Contacto</h3>
                 <input className={`inputContacts ${errors.email ? 'input-error' : ''}`} type="email" name="email" placeholder='Email' value={formData.email} onChange={handleChange} />
                 {errors.email && <p className="error-text">{errors.email}</p>}
-                <input className={`inputContacts ${errors.phone_number ? 'input-error' : ''}`} type="tel" inputMode='tel' name="phone_number" placeholder='Teléfono (10 dígitos)' value={formData.phone_number} onChange={handleChange} maxLength="10" />
-                {errors.phone_number && <p className="error-text">{errors.phone_number}</p>}
+                <input className='inputContacts' type="text" name="phone_number_home" placeholder='Teléfono (10 dígitos)' value={formData.phone_number_home} onChange={handleChange} />
+                <input className='inputContacts' type="text" name="phone_number_work" placeholder='Teléfono de trabajo (opcional)' value={formData.phone_number_work} onChange={handleChange} />
+                <input className={`inputContacts ${errors.phone_number_mobile ? 'input-error' : ''}`} type="text" name="phone_number_mobile" placeholder='Teléfono móvil (10 dígitos)' value={formData.phone_number_mobile} onChange={handleChange} />
+                {errors.phone_number_mobile && <p className="error-text">{errors.phone_number_mobile}</p>}
                 <input className='inputContacts' type="text" name="facebook" placeholder='Usuario Facebook (opcional)' value={formData.facebook} onChange={handleChange} />
                 <input className='inputContacts' type="text" name="instagram" placeholder='Usuario Instagram (opcional)' value={formData.instagram} onChange={handleChange} />
                 <input className='inputContacts' type="text" name="x" placeholder='Usuario X / Twitter (opcional)' value={formData.x} onChange={handleChange} />
-                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleBack}>Atrás</button>
-                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleNext}>Siguiente</button>
+                <button className='buttonPearl' style={{ width: "120px", height: "50px", borderRadius: "20px", color: 'white' }} type="button" onClick={handleBack}>Atrás</button>
+                <button className='buttonPearl' style={{ width: "120px", height: "50px", borderRadius: "20px", color: 'white' }} type="button" onClick={handleNext}>Siguiente</button>
               </div>
             )}
 
             {step === 4 && (
               <div>
-                <h3 className='heading'>Paso 4: Datos Clínicos (Opcional)</h3>
-                <input className={`inputContacts ${errors.blood_type ? 'input-error' : ''}`} type="text" name="blood_type" placeholder='Tipo de sangre (Ej: O+, AB-)' value={formData.blood_type} onChange={handleChange} />
-                {errors.blood_type && <p className="error-text">{errors.blood_type}</p>}
-                <input className={`inputContacts ${errors.allergy ? 'input-error' : ''}`} type="text" name="allergy" placeholder='Alergias (o "Ninguna")' value={formData.allergy} onChange={handleChange} />
-                {errors.allergy && <p className="error-text">{errors.allergy}</p>}
-                <input className={`inputContacts ${errors.disease ? 'input-error' : ''}`} type="text" name="disease" placeholder='Enfermedades Crónicas (o "Ninguna")' value={formData.disease} onChange={handleChange} />
-                {errors.disease && <p className="error-text">{errors.disease}</p>}
-                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleBack}>Atrás</button>
-                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleNext}>Siguiente</button>
+              <h3 className='heading'>Paso 5: Finalizar Registro</h3>
+              <input className={`inputContacts ${errors.password ? 'input-error' : ''}`} type="password" name="password" placeholder='Crear contraseña (mín. 8 caracteres)' value={formData.password} onChange={handleChange} />
+              {errors.password && <p className="error-text">{errors.password}</p>}
+
+              <div className="recaptcha-container">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={RECAPTCHA_SITE_KEY}
+                  onChange={onCaptchaChange}
+                />
+                {errors.recaptcha && <p className="error-text">{errors.recaptcha}</p>}
               </div>
-            )}
 
-            {step === 5 && (
-              <div>
-                <h3 className='heading'>Paso 5: Finalizar Registro</h3>
-                <input className={`inputContacts ${errors.password ? 'input-error' : ''}`} type="password" name="password" placeholder='Crear contraseña (mín. 8 caracteres)' value={formData.password} onChange={handleChange} />
-                {errors.password && <p className="error-text">{errors.password}</p>}
-
-                <div className="recaptcha-container">
-                  <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey={RECAPTCHA_SITE_KEY}
-                    onChange={onCaptchaChange}
-                  />
-                  {errors.recaptcha && <p className="error-text">{errors.recaptcha}</p>}
-                </div>
-
-                <button className='buttonPearl' style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}} type="button" onClick={handleBack}>Atrás</button>
-                <button
-                  type="button"
-                  className="buttonPearl"
-                  style={{width:"120px", height:"50px", borderRadius:"20px", color:'white'}}
-                  onClick={handleSubmit}
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Registrando...' : 'Registrarse'}
-                </button>
-              </div>
+              <button className='buttonPearl' style={{ width: "120px", height: "50px", borderRadius: "20px", color: 'white' }} type="button" onClick={handleBack}>Atrás</button>
+              <button
+                type="button"
+                className="buttonPearl"
+                style={{ width: "120px", height: "50px", borderRadius: "20px", color: 'white' }}
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Registrando...' : 'Registrarse'}
+              </button>
+            </div>
             )}
           </form>
         </div>

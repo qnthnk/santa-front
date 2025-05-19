@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             userLocation: null,
             nearbyPlaces: [],
             contact: [],
+            currentUserEmail: [],
 
 
             user: {

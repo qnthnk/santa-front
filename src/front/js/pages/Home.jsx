@@ -64,8 +64,8 @@ const Home = () => {
                 />
                 <label
                   htmlFor="cb3-8"
-                  data-tg-on="Modo Admin"
-                  data-tg-off="Modo Usuario"
+                  data-tg-on="Vista Medico"
+                  data-tg-off="Vista Paciente"
                   className="tgl-btn"
                 ></label>
               </button>

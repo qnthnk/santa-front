@@ -57,7 +57,7 @@ const HomeAdmin = () => {
                 <Link className='wrap' to='/admin-console'>
                   <p>
                     <span><MdOutlineDashboardCustomize style={{ fontSize: '3em' }} /></span>
-                    <span>Consola</span>
+                    <span>Pacientes</span>
                   </p>
                 </Link>
               </button>
@@ -67,7 +67,7 @@ const HomeAdmin = () => {
                 <Link className='wrap' to='/mapine'>
                   <p>
                     <span><LiaMapSolid style={{ fontSize: '3em' }} /></span>
-                    <span> Mapas</span>
+                    <span> Citas</span>
                   </p>
                 </Link>
               </button>
@@ -77,7 +77,7 @@ const HomeAdmin = () => {
                 <Link className='wrap' to='/stats-and-reports'>
                   <p>
                     <span><FaChartPie style={{ fontSize: '3em' }} /></span>
-                    <span> Estadística</span>
+                    <span>Finanzas</span>
                   </p>
                 </Link>
               </button>
@@ -88,7 +88,7 @@ const HomeAdmin = () => {
                 <Link className='wrap' to='/chatbot'>
                   <p>
                     <span><TbMessageChatbotFilled style={{ fontSize: '3em' }} /></span>
-                    <span> Chatbot</span>
+                    <span> Estadísticas</span>
                   </p>
                 </Link>
               </button>
@@ -98,7 +98,7 @@ const HomeAdmin = () => {
                 <Link className='wrap' to='/expediente'>
                   <p>
                     <span><FaAddressCard style={{ fontSize: '3em' }} /></span>
-                    <span> Expediente</span>
+                    <span>Recordatorios</span>
                   </p>
                 </Link>
               </button>
@@ -108,7 +108,7 @@ const HomeAdmin = () => {
                 <Link className='wrap' to='/blog'>
                   <p>
                     <span><TbReportSearch style={{ fontSize: '3em' }} /></span>
-                    <span>Reportes</span>
+                    <span>Chatbot</span>
                   </p>
                 </Link>
               </button>

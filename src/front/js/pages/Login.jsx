@@ -2,8 +2,9 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Context } from '../store/appContext';
 import { useNavigate, Link } from 'react-router-dom';
 import './../../styles/Login.css';
-import LOGO from '../../img/ONMPRI.png'
+import LOGO from '../../img/LOGOTIPO_FA_1.png'
 import { FaInfo } from "react-icons/fa";
+import fondo from '../../img/familia.webp';
 
 
 const Login = () => {
@@ -12,6 +13,12 @@ const Login = () => {
   const [error, setError] = useState('');
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
+  const estiloFondo = {
+    backgroundImage: `url(${fondo})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    height: '100vh'
+  };
 
   useEffect(() => {
     if (store.user?.isAuthenticated) {
@@ -55,18 +62,18 @@ const Login = () => {
 
   return (
 
-    <div className='containerRMC'>
+    <div className="containernn2" style={{ ...estiloFondo, backgroundColor: 'rgba(255, 255, 255, 0.74)', backgroundBlendMode: 'overlay' }}>
+      
+
       <div className='containerH'>
 
 
 
-        <div className="main">
-          <div className="mainInner">
 
 
             <div className="login">
-              <div className="heading" style={{ color: "white", marginTop: "20px" }}>Escudo</div>
-              <form className="form" onSubmit={handleSubmit}>
+              
+              <form className="form position-absolute top-50 start-50 translate-middle" onSubmit={handleSubmit}>
                 <input
                   placeholder="Correo electrónico"
                   id="email"
@@ -90,27 +97,20 @@ const Login = () => {
                 <div className="loginNew" style={{ marginTop: "-20px" }}>
                   <button value="Iniciar sesión" type="submit" >Ingresar</button>
                   <span >
-                    <Link className='forgot-password' to="/forgot-password">Olvidé mi contraseña</Link>
+                    <Link className='forgot-password' style={{ color:'rgba(9, 43, 87, 0.62)'}} to="/forgot-password">Olvidé mi contraseña</Link>
                   </span>
                   <span >
-                    <Link className='forgot-password' style={{ fontSize: 'x-large' }} to="/signup">Regístrate</Link>
+                    <Link className='forgot-password' style={{ fontSize: 'x-large', color:'rgba(9, 43, 87, 0.73)' }} to="/signup">Regístrate</Link>
                   </span>
 
                 </div>
               </form>
+              <img className='position-absolute bottom-0 start-50 translate-middle-x' src={LOGO} alt="Logo" style={{  width: '200px', height: 'auto' }} /> 
             </div>
+            
           </div>
-          <div className="register">
-            <form className="form">
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <img src={LOGO} className='logo' />
-              </div>
-
-            </form>
-          </div>
+          
         </div>
-      </div>
-    </div>
   );
 };
 

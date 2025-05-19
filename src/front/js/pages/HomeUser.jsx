@@ -56,11 +56,11 @@ const HomeUser = () => {
           <div className='formis'>
             {token && (
               <button className='buttonPearl'>
-                <Link className='wrap' to='/contact-list'>
+                <Link className='wrap' to='/patient-profile'>
                   
                   <p>
-                    <span><RiContactsFill style={{ fontSize: '3em' }} /></span>
-                    <span>Contactos</span>
+                    {/* <span><RiContactsFill style={{ fontSize: '3em' }} /></span> */}
+                    <span>Mi perfil</span>
                     
                   </p>
                 </Link>
@@ -69,12 +69,12 @@ const HomeUser = () => {
             {token && (
                             <button className='buttonPearl'>
 
-              <Link className='wrap' to='/location-view'>
+              <Link className='wrap' to='/complaint'>
               <p>
                     <span>
                 <FaLocationDot style={{ fontSize: '3em' }} />
                 </span>
-                    <span>Lugares</span>
+                    <span>Estudios</span>
                     
                   </p>
               </Link>
@@ -94,7 +94,7 @@ const HomeUser = () => {
                     <span>
                 <MdTipsAndUpdates style={{ fontSize: '3em' }} />
                 </span>
-                    <span>Entérate</span>
+                    <span>Recetas</span>
                     
                   </p>
               </Link>
@@ -109,6 +109,20 @@ const HomeUser = () => {
                     <span>
                 <TbMessageChatbotFilled style={{ fontSize: '3em' }} />
                 </span>
+                    <span>Citas</span>
+                    
+                  </p>
+              </Link>
+              </button>
+            )}
+            {token && (
+                            <button className='buttonPearl'>
+
+              <Link className='wrap' to='/chatbot'>
+              <p>
+                    <span>
+                <BsChatSquareTextFill style={{ fontSize: '3em' }} />
+                </span>
                     <span>Chatbot</span>
                     
                   </p>
@@ -118,26 +132,12 @@ const HomeUser = () => {
             {token && (
                             <button className='buttonPearl'>
 
-              <Link className='wrap' to='/complaint'>
-              <p>
-                    <span>
-                <BsChatSquareTextFill style={{ fontSize: '3em' }} />
-                </span>
-                    <span>Denuncia</span>
-                    
-                  </p>
-              </Link>
-              </button>
-            )}
-            {token && (
-                            <button className='buttonPearl'>
-
-              <Link className='wrap' to='/'>
+              <Link className='wrap' to='/contact-list'>
               <p>
                     <span className='wrap'>
                 <PiPawPrintFill style={{ fontSize: '3em' }} />
                 </span>
-                    <span>Opciones</span>
+                    <span>Contactos de Emergencia</span>
                     
                   </p>
               </Link>

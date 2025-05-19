@@ -5,7 +5,7 @@ import "../../styles/home.css";
 import { FaInfo } from "react-icons/fa";
 
 const faqs = [
-  { question: "Transporte", answer: "Datos sobre rutas de camiones y sitios de taxi seguros." },
+  { question: "Ver mi", answer: "Datos sobre rutas de camiones y sitios de taxi seguros." },
   {
     question: "Números de emergencia",
     answer: (
@@ -35,7 +35,7 @@ const FreqAskedQuestions = () => {
       <div className='containerHs'>
         <div className='heroContact'>
           <form className="formContact">
-            <h2 className='heading'>Entérate</h2>
+            <h2 className='heading'>Mi Perfil</h2>
             <div style={{ overflowY: "auto", maxHeight: "50vh", minWidth: "65vw", textAlign: "center" }}>
               {faqs.map((faq, index) => (
                 <div key={index}>
@@ -43,7 +43,7 @@ const FreqAskedQuestions = () => {
                     className='inputContact submit'
                     style={{
                       width: "65vw",
-                      backgroundColor: openIndex === index ? "rgb(133,66,166)" : "transparent", // Change background color when active
+                      backgroundColor: openIndex === index ? "rgb(62, 101, 169)" : "transparent", // Change background color when active
                       color: openIndex === index ? "white" : "rgb(120, 117, 117)", // Change text color when active
                       textAlign: "center", // Center text
                     }}

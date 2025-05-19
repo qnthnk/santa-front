@@ -295,7 +295,7 @@ body {}
 	display: block;
 	width: 60px;
 	text-decoration: none;
-	background: rgba(133, 66, 166, 0.705);
+	background: rgba(6, 54, 132, 0.705);
 	backdrop-filter: blur(10px);
 	color: whitesmoke;
 	padding-block: 10px;
@@ -303,7 +303,7 @@ body {}
 	height: 60px;
 	word-wrap: break-word;
 	border-radius: 50%;
-	border-color: rgb(133, 66, 166);
+	border-color: rgb(153, 202, 230);
 	border-width: 5px;
 	transition: all 0.2s ease-in-out;
 }
@@ -492,8 +492,8 @@ body {}
 }
 
 .logoNav {
-	width: 120px;
-	height: 120px;
+	width: 100px;
+	height: 100px;
 
 }
 
@@ -873,15 +873,15 @@ body {}
 /* From Uiverse.io by marcelodolza */
 .buttonPearl {
 	--white: #ffe7ff;
-	--bg: rgb(133, 66, 166);
+	--bg: rgb(77, 139, 209);
 	--radius: 100px;
 	outline: none;
 	cursor: pointer;
 	border: 0;
-	width: 120px;
-	height: 120px;
+	width: 160px;
+	height: 100px;
 	position: relative;
-	border-radius: 50%;
+	border-radius: 30%;
 	background-color: var(--bg);
 	margin: 20px 5px 20px 5px;
 	transition: all 0.2s ease;
@@ -894,25 +894,25 @@ body {}
 }
 
 .buttonPearl .wrap {
-	font-size: 1em;
+	font-size: xx-large;
 	font-weight: 500;
 	color: rgba(255, 255, 255);
 	position: relative;
 	overflow: hidden;
 	text-decoration: none;
-	height: 50px;
-	width: 50px;
+	height: 10px;
+	width: 10px;
 
 
 }
-
 .buttonPearl:hover {
 	--white: #f9ffe7;
-	--bg: rgb(133, 66, 166);
+	--bg: rgb(134, 37, 68);
 	cursor: pointer;
 	border: 0;
-	width: 120px;
-	height: 120px;
+	width: 160px;
+	height: 100px;
+	font-size: xx-large;
 	animation: pendulum 1.2s ease-in-out;
 }
 
@@ -920,23 +920,18 @@ body {}
 	0% {
 		transform: rotate(0deg);
 	}
-
 	20% {
 		transform: rotate(15deg);
 	}
-
 	40% {
 		transform: rotate(5deg);
 	}
-
 	60% {
 		transform: rotate(-15deg);
 	}
-
 	80% {
 		transform: rotate(0deg);
 	}
-
 	100% {
 		transform: rotate(0deg);
 	}
@@ -947,16 +942,16 @@ body {}
 	align-items: center;
 	justify-content: center;
 	align-items: center;
-	width: 120px;
-	height: 120px;
-	font-size: x-large;
+	width: 160px;
+	height: 100px;
+	font-size:large;
 	text-align: center;
 	font-weight: 500;
 	transform: translateY(10%);
 	transition: transform 0.3s ease-in-out;
 	mask-image: linear-gradient(to bottom, white 10%, transparent),
 		linear-gradient(to top, white 10%, transparent);
-
+		
 }
 
 .buttonPearlAdmin {
@@ -966,10 +961,10 @@ body {}
 	outline: none;
 	cursor: pointer;
 	border: 0;
-	width: 120px;
-	height: 120px;
+	width: 160px;
+	height: 100px;
 	position: relative;
-	border-radius: 50%;
+	border-radius: 30%;
 	background-color: var(--bg);
 	margin: 20px 5px 20px 5px;
 	transition: all 0.2s ease;
@@ -993,13 +988,12 @@ body {}
 
 
 }
-
 .buttonPearlAdmin:hover {
 	--white: #f9ffe7;
 	cursor: pointer;
 	border: 0;
-	width: 120px;
-	height: 120px;
+	width: 160px;
+	height: 100px;
 	animation: pendulum 1.2s ease-in-out;
 }
 
@@ -1007,23 +1001,18 @@ body {}
 	0% {
 		transform: rotate(0deg);
 	}
-
 	20% {
 		transform: rotate(15deg);
 	}
-
 	40% {
 		transform: rotate(5deg);
 	}
-
 	60% {
 		transform: rotate(-15deg);
 	}
-
 	80% {
 		transform: rotate(0deg);
 	}
-
 	100% {
 		transform: rotate(0deg);
 	}
@@ -1034,102 +1023,17 @@ body {}
 	align-items: center;
 	justify-content: center;
 	align-items: center;
-	width: 120px;
-	height: 120px;
-	font-size: x-large;
+	width: 160px;
+	height: 100px;
+	font-size:larger;
 	text-align: center;
 	font-weight: 500;
 	transform: translateY(10%);
 	transition: transform 0.3s ease-in-out;
 	mask-image: linear-gradient(to bottom, white 10%, transparent),
 		linear-gradient(to top, white 10%, transparent);
-
+		
 }
 
-/* From Uiverse.io by david-mohseni */ 
-.wrappersm {
-	display: inline-flex;
-	list-style: none;
-	height: 120px;
-	width: 100%;
-	padding-top: 40px;
-	font-family: "Poppins", sans-serif;
-	justify-content: center;
-  }
-  
-  .wrappersm .icon {
-	position: relative;
-	background: #fff;
-	border-radius: 50%;
-	margin: 10px;
-	width: 50px;
-	height: 50px;
-	font-size: 18px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-	cursor: pointer;
-	transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-  
-  .wrappersm .tooltip {
-	position: absolute;
-	top: 0;
-	font-size: 14px;
-	background: #fff;
-	color: #fff;
-	padding: 5px 8px;
-	border-radius: 5px;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-	opacity: 0;
-	pointer-events: none;
-	transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-  
-  .wrappersm .tooltip::before {
-	position: absolute;
-	content: "";
-	height: 8px;
-	width: 8px;
-	background: #fff;
-	bottom: -3px;
-	left: 50%;
-	transform: translate(-50%) rotate(45deg);
-	transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-  
-  .wrappersm .icon:hover .tooltip {
-	top: -45px;
-	opacity: 1;
-	visibility: visible;
-	pointer-events: auto;
-  }
-  
-  .wrappersm .icon:hover span,
-  .wrappersm .icon:hover .tooltip {
-	text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
-  }
-  
-  .wrappersm .facebook:hover,
-  .wrappersm .facebook:hover .tooltip,
-  .wrappersm .facebook:hover .tooltip::before {
-	background: #1877f2;
-	color: #fff;
-  }
-  
-  .wrappersm .twitter:hover,
-  .wrappersm .twitter:hover .tooltip,
-  .wrappersm .twitter:hover .tooltip::before {
-	background: #1da1f2;
-	color: #fff;
-  }
-  
-  .wrappersm .instagram:hover,
-  .wrappersm .instagram:hover .tooltip,
-  .wrappersm .instagram:hover .tooltip::before {
-	background: #e4405f;
-	color: #fff;
-  }
-  
+
+

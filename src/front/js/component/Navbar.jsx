@@ -3,7 +3,7 @@ import { Context } from '../store/appContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { GiHamburgerMenu } from "react-icons/gi";;
 import "../../styles/home.css";
-import LOGO from "../../img/ONMPRI.png"
+import LOGO from "../../img/LOGOTIPO_FA_3.png"
 import { RiHome6Fill } from "react-icons/ri";
 import { MdLogout } from "react-icons/md";
 import Swal from 'sweetalert2';
